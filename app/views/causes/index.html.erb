@@ -1,0 +1,26 @@
+<h1>Listing causes</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Owner</th>
+    <th>Aasm state</th>
+  </tr>
+
+<% @causes.each do |cause| %>
+  <tr>
+    <td><%=h cause.title %></td>
+    <td><%=h cause.description %></td>
+    <td><%=h cause.owner_id %></td>
+    <td><%=h cause.aasm_state %></td>
+    <td><%= link_to 'Show', cause %></td>
+    <td><%= link_to 'Edit', edit_cause_path(cause) %></td>
+    <td><%= link_to 'Destroy', cause, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New cause', new_cause_path %>

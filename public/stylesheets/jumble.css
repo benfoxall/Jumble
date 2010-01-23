@@ -1,0 +1,57 @@
+body{
+	font-family: 'HelveticaNeue', helvetica, arial, sans-serif;
+	font-size:120%;
+	margin:2em;
+}
+.errorExplanation{
+	font-style: italic;
+	color:#333;
+	font-size:.7em;
+	width:30em;
+}
+.fieldWithErrors{
+	display:inline;
+}
+.fieldWithErrors label{
+	color:#c10000;
+}
+.fieldWithErrors input{
+	border:1px solid #c10000;
+}
+input[type=text], textarea{
+	width:20em;
+	font-size:1.3em;
+}
+a{
+	color:#08f;
+}
+.flash{
+	background-color:#eee;
+	border-bottom:1px solid #ddd;
+	color:#555;
+	margin:-2em;
+	margin-bottom:2em;
+	padding:.5em;
+}
+.flash.notice{
+	/* all as above but with saturation 10 */
+	background-color:#D2E8CD;
+	border-bottom:1px solid #C0D4BC;
+	color:#3C423B;
+}
+
+.flash span{
+	font-size:.6em;
+	text-transform:uppercase;
+	font-weight:bold;
+}
+.flash .close{
+	color:#999;
+	font-size:1em;
+	float:left;
+	padding-right:.5em;
+	cursor:pointer;
+}
+.flash .close:hover{
+	color:#f08;
+}
