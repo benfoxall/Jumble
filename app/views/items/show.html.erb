@@ -1,0 +1,33 @@
+<p>
+  <b>Title:</b>
+  <%=h @item.title %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%=h @item.price %>
+</p>
+
+<p>
+  <b>Retained cost:</b>
+  <%=h @item.retained_cost %>
+</p>
+
+<p>
+  <b>Cause:</b>
+  <%=h @item.cause_id %>
+</p>
+
+<p>
+  <b>Id in cause:</b>
+  <%=h @item.id_in_cause %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @item.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>

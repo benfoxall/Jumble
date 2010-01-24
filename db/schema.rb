@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100122172019) do
+ActiveRecord::Schema.define(:version => 20100123132518) do
 
   create_table "causes", :force => true do |t|
     t.string   "title"
@@ -17,6 +17,17 @@ ActiveRecord::Schema.define(:version => 20100122172019) do
     t.integer  "owner_id"
     t.string   "aasm_state"
     t.string   "permalink"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "items", :force => true do |t|
+    t.string   "title"
+    t.integer  "price"
+    t.integer  "retained_cost"
+    t.integer  "cause_id"
+    t.integer  "id_in_cause"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

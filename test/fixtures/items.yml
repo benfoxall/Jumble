@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  price: 1
+  retained_cost: 1
+  cause_id: 1
+  id_in_cause: 1
+  description: MyText
+
+two:
+  title: MyString
+  price: 1
+  retained_cost: 1
+  cause_id: 1
+  id_in_cause: 1
+  description: MyText

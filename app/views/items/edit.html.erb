@@ -1,0 +1,36 @@
+<h1>Editing item</h1>
+
+<% form_for(@item) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :price %><br />
+    <%= f.text_field :price %>
+  </p>
+  <p>
+    <%= f.label :retained_cost %><br />
+    <%= f.text_field :retained_cost %>
+  </p>
+  <p>
+    <%= f.label :cause_id %><br />
+    <%= f.text_field :cause_id %>
+  </p>
+  <p>
+    <%= f.label :id_in_cause %><br />
+    <%= f.text_field :id_in_cause %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @item %> |
+<%= link_to 'Back', items_path %>

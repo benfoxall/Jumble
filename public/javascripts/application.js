@@ -9,4 +9,9 @@ document.observe('dom:loaded',function(){
 		});
 		flash.insert({bottom:close})
 	})	
+	
+	//there is a form for the new item
+	if($('new_item')){
+		
+	}
 })

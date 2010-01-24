@@ -35,9 +35,10 @@ a{
 }
 .flash.notice{
 	/* all as above but with saturation 10 */
+/* (don't like)
 	background-color:#D2E8CD;
 	border-bottom:1px solid #C0D4BC;
-	color:#3C423B;
+	color:#3C423B;*/
 }
 
 .flash span{
