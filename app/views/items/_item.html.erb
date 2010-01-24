@@ -1,7 +1,7 @@
 <div class="item">
 	<p class="cost">
 		<span class="amount">&pound;<%=h item.price %></span> 
-		<span class="donated">&pound;<%=h item.price - item.retained_cost %> dontated</span>
+		<span class="donated">&pound;<%=h item.price - item.retained_cost - item.charge %> dontated</span>
 		<img src="http://chart.apis.google.com/chart?cht=p&amp;chd=<%= item.google_chart_data %>&amp;chs=40x40"/>
 	</p>
 	<h3><%=link_to h(item.title), item %></h3>

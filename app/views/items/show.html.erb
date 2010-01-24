@@ -8,7 +8,7 @@
 	<%=h @item.title %> <span class="amount">&pound;<%=h @item.price %></span> 
 </h1>
 <h2>
-	Donating <span class="amount">&pound;<%=h @item.price - @item.retained_cost %></span>
+	Donating <span class="amount">&pound;<%=h @item.price - @item.retained_cost - @item.charge %></span>
 </h2>
 
 <div>

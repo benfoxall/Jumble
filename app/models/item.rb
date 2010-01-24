@@ -13,4 +13,8 @@ class Item < ActiveRecord::Base
     b = ((retained_cost) * 100) / price 
     "t:#{a},#{b}"
   end
+  
+  def charge
+    (price/20.0).ceil
+  end
 end
