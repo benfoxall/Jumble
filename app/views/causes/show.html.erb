@@ -1,15 +1,19 @@
+<h3 style="float:right;margin:0">Like this?  
+	<%= link_to 'Sell an item for it!', new_cause_item_path(:cause_id => params[:id]) %>
+</h3>
+
 <h1 id="cause-title">
-  <%=h @cause.title %>
+	<%=h @cause.title %>
 </h1>
 
 <div id="cause">
-  <%=simple_format (h(@cause.description) << edit_link) %>
-</p>
+	<%=simple_format (h(@cause.description) << edit_link) %>
+</div>
 
 <div class="hr">
 	<hr />
 </div>
 
 <div id="items">
-	<%#= render @cause.items %>
+	<%= render @cause.items %>
 </div>

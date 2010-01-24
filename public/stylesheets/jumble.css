@@ -3,6 +3,17 @@ body{
 	font-size:120%;
 	margin:2em;
 }
+h1#for{
+	font-size:.8em;
+	border-bottom:1px dotted #999;
+	padding-bottom:1em;
+}
+div.hr{
+	border-bottom:1px dotted #999;
+}
+div.hr hr{
+	display:none;
+}
 .errorExplanation{
 	font-style: italic;
 	color:#333;
@@ -55,4 +66,33 @@ a{
 }
 .flash .close:hover{
 	color:#f08;
+}
+.amount{
+	font-weight:bold; /* we all like amounts! */
+	color:#08f;
+}
+.item{
+	border-bottom:1px solid #eee;
+}
+.item .cost{
+	float:left;
+	clear:left;
+	margin:0;
+	width:5em;
+	text-align:center;
+	border-right:1px solid #eee;
+	margin-right:1em;
+	margin-bottom:1em;
+}
+.item .donated{
+	font-size:.5em;
+	color:#999;
+	display:block;
+}
+.item .description{
+	font-size:.8em;
+	font-style: italic;
+}
+.clear{
+	clear:both;
 }

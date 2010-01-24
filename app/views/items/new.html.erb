@@ -1,40 +1,201 @@
-<h1>New item</h1>
-
+<h1>I'm Selling..</h1>
 <% form_for(@item) do |f| %>
   <%= f.error_messages %>
 
+<%= f.hidden_field :retained_cost %>
+<%= f.hidden_field :cause_id %>
+
   <p>
-    <%= f.label :title %><br />
     <%= f.text_field :title %>
+    <%= f.label :price, 'for &pound;' %> <%= f.text_field :price %>
   </p>
-  <p>
-    <%= f.label :price, 'Price (&pound;)' %><br />
-    <%= f.text_field :price %>
-  </p>
-  <div id="share_picker">
-	<div class="handle">
-		
+
+<div id="share_panel">
+	<h3>Who gets the money!</h3>
+	<p><small><em>Drag to alter and remember you have to cover shipping.</em></small></p>
+	<ul id="sharing">
+		<li id="a">
+			<span class="share">
+				&pound;-
+			</span>
+			<span class="to">
+				<%= @item.cause.title %>
+			</span>
+		</li>
+		<li id="b">
+			<span class="share">
+				&pound;-
+			</span>
+			<span class="to">
+				You
+			</span>
+		</li>
+		<li id="c">
+			<span class="share">
+				&pound;-
+			</span>
+			<span class="to">
+				Us (service)
+			</span>
+		</li>
+	</ul>
 	</div>
-  </div>
-  <p>
-    <%= f.label :retained_cost %><br />
-    <%= f.text_field :retained_cost %>
-  </p>
-  <p>
-    <%= f.label :cause_id %><br />
-    <%= f.text_field :cause_id %>
-  </p>
-  <p>
-    <%= f.label :id_in_cause %><br />
-    <%= f.text_field :id_in_cause %>
-  </p>
+	
+	
   <p>
     <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.text_area :description, :rows => 3 %>
   </p>
   <p>
-    <%= f.submit 'Create' %>
+    <%= f.submit 'Submit' %>
   </p>
 <% end %>
 
-<%= link_to 'Back', items_path %>
+
+
+
+
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+/* 
+This is INCREDIBLY hacked together (mostly whilst watching a film) 
+..don't worry - it's going to be wonderful!
+*/
+	document.observe('dom:loaded',function(){
+
+		
+		var shareUI = Class.create({
+				initialize:function(src,panel,value){
+					this.share_value = value;
+					this.share_panel = $(panel);
+					this.share_src = $(src);
+					
+					this.dragging = false;
+					this.start_y = 0;
+					
+					//this is the only thing that is varied by dragging
+					this.weighting = 0.5;
+					
+					this.share_panel.observe('mousedown',this.drag_start.bindAsEventListener(this));
+					document.observe('mouseup',  this.drag_stop.bindAsEventListener(this));
+					document.observe('mousemove',this.drag_move.bindAsEventListener(this));
+					this.share_src.observe('keyup',this.update_values.bindAsEventListener(this));
+					this.update_values();
+				},
+				drag_start:function(e){
+					this.start_y = Event.pointerY(e);
+					this.dragging = true;
+					Event.stop(e);
+				},
+				drag_stop:function(){
+					this.dragging = false;
+				},
+				drag_move:function(e){
+					if(this.dragging){
+						diff = this.start_y - Event.pointerY(e)
+						this.start_y -= diff;
+						this.weighting -= diff/300;
+						if(this.weighting<0){this.weighting = 0}
+						if(this.weighting>1){this.weighting = 1}
+						this.update_values();
+					}
+				},
+				update_values:function(){
+					//this should be split up nicely
+					price = $F(this.share_src);
+					if(price != parseInt(price)){
+						price = parseInt(price)
+						$(this.share_src).setValue((isNaN(price)) ? '' : price);
+					}
+					if(isNaN(price)){
+						$('share_panel').hide();
+						return;
+					} else {
+						$('share_panel').show();
+					}
+					
+					//work out the service charge
+					charge = Math.ceil(price/20);
+					left = price - charge;
+					a = Math.ceil(left*this.weighting)
+					b = left - a;
+					
+					arr = [a,b,charge];
+					
+					//from here on is the actual updating part (the rest could be refactored)
+					this.share_panel.select('li').each(function(li,i){
+						share = arr[i]
+						//update the share of the price
+						li.down('.share').update(share > 0 ? ('&pound;' + arr[i]) : '0')
+						
+						//update the sizes
+						total_height = 300;
+						h = share/price;
+						console.log(h*300)
+						li.setStyle({height:(h*210)+'px',fontSize:(h*70)+'px'})
+					});
+					
+					//update the hidden feild
+					$('item_retained_cost').setValue(b);
+				},
+			})
+			
+			
+			new shareUI('item_price','sharing',50);
+	})
+</script>
+
+<style type="text/css" media="screen">
+	/*
+	"Stylesheets belong in the header!" (and for good reason),  did I mention that this
+	page is currently hacked together? 
+	*/
+	#item_price{
+		width:5em;
+	}
+	#item_title{
+		width:15em;
+	}
+	
+	/* #sharing */
+	ul#sharing{
+		background-color:#eee;
+	}
+	ul#sharing,ul#sharing li{
+		list-style:none;
+		padding:0;
+	}
+	ul#sharing{
+		border-bottom:1px solid #ccc;
+		cursor:row-resize;
+	}
+	ul#sharing li{
+		font-size:1.1em;
+		overflow:hidden;
+		border-top:1px solid #ccc;
+	}
+	ul#sharing li .share{
+		float:left;
+		clear:left;
+		width:3em;
+		color:#08f;
+		font-weight:bold;
+		margin:1em;
+		white-space: nowrap;
+	}
+	ul#sharing li .to{
+		display:block;
+		margin:1em;
+		white-space: nowrap;
+	}
+	#share_panel{
+		width:30em;
+	}
+	#share_panel p,h3{
+		margin:0;
+		color:#999;
+	}		
+</style>

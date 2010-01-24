@@ -25,6 +25,7 @@ class ItemsController < ApplicationController
   # GET /items/new.xml
   def new
     @item = Item.new
+    @item.cause_id = params[:cause_id]
 
     respond_to do |format|
       format.html # new.html.erb
