@@ -5,7 +5,7 @@ class Confirm < ActionMailer::Base
     recipients cause.email
     from       'jumble@bfoxall.com'
     subject    'Testing from rails'
-    body       :cause => cause, :host => Rails.production? ? 'https://jumble.heroku.com' : 'http://jumble.local'
+    body       :cause => cause, :host => Rails.env.production? ? 'https://jumble.heroku.com' : 'http://jumble.local'
   end
 
   # def item(recipient,confirmation_code)
