@@ -3,6 +3,9 @@ body{
 	font-size:120%;
 	margin:2em;
 }
+body.inactive{
+	color:#aaa;
+}
 h1#for{
 	font-size:.8em;
 	border-bottom:1px dotted #999;
@@ -32,6 +35,10 @@ div.hr hr{
 input[type=text], textarea{
 	width:20em;
 	font-size:1.3em;
+	border:1px solid #999;
+}
+input[type=text]:hover, textarea:hover{
+	border-color:#444;
 }
 a{
 	color:#08f;
@@ -95,4 +102,18 @@ a{
 }
 .clear{
 	clear:both;
+}
+.hint{
+	font-size:.7em;
+	color:#777;
+	font-style: italic;
+}
+#description{
+	font-size:.8em;
+}
+#activate{
+	font-size:2em;
+	color:#000;
+	font-style: italic;
+	border-bottom:.1em solid #f08;
 }

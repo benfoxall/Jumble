@@ -14,11 +14,20 @@ class CausesController < ApplicationController
   # GET /causes/1.xml
   def show
     @cause = Cause.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @cause }
+    @active = @cause.confirmed
+    
+    @nothing = session.inspect
+    
+    if params.key? :editorId
+      case params[:editorId]
+      when 'description'
+        render :text => @cause.description
+      end
     end
+    # respond_to do |format|
+    #   format.html # show.html.erb
+    #   format.xml  { render :xml => @cause }
+    # end
   end
 
   # GET /causes/new
@@ -36,6 +45,21 @@ class CausesController < ApplicationController
   def edit
     @cause = Cause.find(params[:id])
   end
+  def edit_inplace
+    @cause = Cause.find(params[:id])
+    @cause.update_attribute(:description, params[:value])
+    @text = @cause.description
+  end
+  
+  def hello
+    @cause = Cause.find(params[:id])
+    
+    if params.key? @cause.login_hash
+        @cause.update_attribute :confirmed, true
+        session["cause-#{@cause.id}"] = true
+    end
+    redirect_to @cause
+  end
 
   # POST /causes
   # POST /causes.xml
@@ -44,7 +68,8 @@ class CausesController < ApplicationController
 
     respond_to do |format|
       if @cause.save
-        flash[:notice] = 'Cause was successfully created.'
+        # flash[:notice] = 'Cause was successfully created.'
+        session["cause-#{@cause.id}"] = true
         format.html { redirect_to(@cause) }
         format.xml  { render :xml => @cause, :status => :created, :location => @cause }
       else

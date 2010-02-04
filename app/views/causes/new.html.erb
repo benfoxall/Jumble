@@ -1,16 +1,16 @@
-<h1>Start a new Jumble</h1>
+<h1>Start Jumbling</h1>
 
 <% form_for(@cause) do |f| %>
-  <%= f.error_messages %>
+  <%= f.error_messages :header_message => 'Could not start your Jumble', :message => '' %>
   <p>
-    <%= f.label :title %><br />
+    <%= f.label :title, 'What do you want to raise money for?' %> <span class="hint">Eg. My Skiing Holiday</span><br />
     <%= f.text_field :title %>
   </p>
   <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description, :rows => 5 %>
+    <%= f.label :email, 'Your email address' %><br />
+    <%= f.text_field :email %>
   </p>
   <p>
-    <%= f.submit 'Create' %>
+    <%= f.submit 'Go' %>
   </p>
 <% end %>

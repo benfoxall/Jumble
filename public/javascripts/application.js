@@ -14,4 +14,5 @@ document.observe('dom:loaded',function(){
 	if($('new_item')){
 		
 	}
+	
 })

@@ -1,13 +1,23 @@
+<% unless active? %>
+<p id="activate">
+	We've sent you an email!
+	<br />
+	Click the link in it - and we'll make this active
+</p>
+<% end %>
+<% if active? %>
 <h3 style="float:right;margin:0">Like this?  
 	<%= link_to 'Sell an item for it!', new_cause_item_path(:cause_id => params[:id]) %>
 </h3>
+<% end %>
 
 <h1 id="cause-title">
 	<%=h @cause.title %>
 </h1>
 
-<div id="cause">
-	<%=simple_format h(@cause.description) %>
+<div id="description">
+	<%= simple_format h(@cause.description) %>
+	<% if owner? && @cause.description.blank? %><p>Add a description</p><% end %>
 </div>
 
 <div class="hr">
@@ -17,3 +27,10 @@
 <div id="items">
 	<%= render @cause.items %>
 </div>
+
+
+<% if owner? %>
+<script type="text/javascript">
+ new Ajax.InPlaceEditor('description', '<%= url_for @cause%>/edit_inplace', {rows:3,cols:40,loadTextURL:'<%= url_for @cause%>?as_plain_text', highlightColor:'#EBF2FB'});
+</script>
+<% end %>

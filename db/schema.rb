@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100123132518) do
+ActiveRecord::Schema.define(:version => 20100204203106) do
 
   create_table "causes", :force => true do |t|
     t.string   "title"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(:version => 20100123132518) do
     t.string   "permalink"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "confirmed",   :default => false
+    t.string   "email"
+    t.string   "login_hash"
   end
 
   create_table "items", :force => true do |t|
@@ -30,6 +33,9 @@ ActiveRecord::Schema.define(:version => 20100123132518) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "confirmed",     :default => false
+    t.string   "email"
+    t.string   "login_hash"
   end
 
 end
