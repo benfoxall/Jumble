@@ -4,7 +4,7 @@ class Confirm < ActionMailer::Base
   def cause(cause)
     recipients cause.email
     from       'jumble@bfoxall.com'
-    subject    'Testing from rails'
+    subject    'Jumble confirmation'
     body       :cause => cause, :host => Rails.env.production? ? 'https://jumble.heroku.com' : 'http://jumble.local'
   end
 
