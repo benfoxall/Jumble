@@ -32,12 +32,13 @@ div.hr hr{
 .fieldWithErrors input{
 	border:1px solid #c10000;
 }
-input[type=text], textarea{
+input[type=text], input[type=password], textarea{
 	width:20em;
 	font-size:1.3em;
 	border:1px solid #999;
+/*	width:100%;*/
 }
-input[type=text]:hover, textarea:hover{
+input[type=text]:hover, input[type=password]:hover, textarea:hover{
 	border-color:#444;
 }
 a{
@@ -111,9 +112,6 @@ a{
 #description{
 	font-size:.8em;
 }
-#activate{
-	font-size:2em;
-	color:#000;
-	font-style: italic;
-	border-bottom:.1em solid #f08;
+.user_bar{
+	font-size:.7em;
 }

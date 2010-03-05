@@ -9,19 +9,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100204203106) do
+ActiveRecord::Schema.define(:version => 20100206123736) do
 
   create_table "causes", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "owner_id"
     t.string   "aasm_state"
     t.string   "permalink"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "confirmed",   :default => false
-    t.string   "email"
-    t.string   "login_hash"
+    t.string   "claim_code"
+    t.integer  "user_id"
   end
 
   create_table "items", :force => true do |t|
@@ -33,9 +31,19 @@ ActiveRecord::Schema.define(:version => 20100204203106) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "confirmed",     :default => false
+    t.string   "claim_code"
+    t.integer  "user_id"
+  end
+
+  create_table "users", :force => true do |t|
     t.string   "email"
-    t.string   "login_hash"
+    t.string   "password_hash"
+    t.string   "password_salt"
+    t.string   "name"
+    t.string   "persistence_token"
+    t.boolean  "verified"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

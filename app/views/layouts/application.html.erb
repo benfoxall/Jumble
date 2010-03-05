@@ -11,6 +11,13 @@
 	<%= javascript_include_tag :defaults %>
 </head>
 <body<%= ' class="inactive"' if @active == false %>>
+
+	<% if UserSession.find %>
+	<p class="user_bar">
+		<em><%=h UserSession.find.user.name %></em> <%= link_to 'logout', logout_path %>
+	</p>	
+	<% end %>
+
 	<%- flash.each do |type,message| -%>
 	<p class="flash <%=h type%>">
 		<span><%=h message %></span>

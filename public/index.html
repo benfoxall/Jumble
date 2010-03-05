@@ -11,10 +11,11 @@
 			font-family: 'HelveticaNeue', helvetica, arial, sans-serif;
 			font-size:120%;
 			margin:2em;
+			margin-top:0;
 		}
 		a{
-			font-size:.2em;
-			color:#fff;/* ho ho ho */
+			color:#444;
+			font-size:1.4em;
 		}
 		h1#site-title{
 			color:#f08;
@@ -25,8 +26,25 @@
 		h2#tagline{
 			margin-top:-.5em;
 		}
+		h2{
+			color:#8F0;
+			font-size:4em;
+			text-transform:uppercase;
+			margin:0;
+/*			font-weight:normal;*/			
+			padding-left:1em;
+		}
 		small{
 			color:#777;
+		}
+		p,li{
+			font-size:1.4em;
+			width:20em;
+			list-style:none;
+			font-weight:bold;
+			text-transform:uppercase;
+			color:#555;
+			padding-left:4em;
 		}
 		/* make this page feel a bit different */
 		::selection{     background:#fff;color:#08f;}
@@ -34,8 +52,23 @@
 	</style>
 </head>
 <body>
-	<h1 id="site-title">Jumble <a href="/causes/new">Start</a></h1>
-	<h2 id="tagline">Sell something for something</h2>
-	<p>When you sell your items using jumble - you can elect a proportion of the cost to be given to a cause you like.</p>
+	<h1 id="site-title">Jumble</h1>
+	<h2>Charities</h2>
+	<p>
+		<a href="/causes/new">Register</a> with us so that people can sell their stuff for your good cause
+	</p>
+	<h2>Everyone</h2>
+	<p>
+		Lend a hand!
+	</p>
+	<ul>
+		<li>
+			<a href="#">Sell</a> of your old stuff
+		</li>
+		<li>
+			<a href="#">Find</a> something new
+		</li>
+	</ul>
+		
 </body>
 </html>

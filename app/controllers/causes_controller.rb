@@ -14,10 +14,6 @@ class CausesController < ApplicationController
   # GET /causes/1.xml
   def show
     @cause = Cause.find(params[:id])
-    @active = @cause.confirmed
-    
-    @nothing = session.inspect
-    
     if params.key? :editorId
       case params[:editorId]
       when 'description'
@@ -65,6 +61,10 @@ class CausesController < ApplicationController
   # POST /causes.xml
   def create
     @cause = Cause.new(params[:cause])
+    
+    userses = UserSession.find
+    
+    @cause.user = userses.user if userses
 
     respond_to do |format|
       if @cause.save
