@@ -1,0 +1,18 @@
+<% if UserSession.find %>
+	<p style="margin:.5em">
+		<em><%=h UserSession.find.user.name %></em> <%= link_to 'logout', logout_path %>
+	</p>
+<% else %>
+	<div id="auth">
+		<h2>
+			<a href="#login"  id="login_link">Login</a> / 
+			<a href="#signup" id="signup_link">Signup</a> to use this site
+		</h2>
+		<div id="login">
+			<%= render 'user_sessions/new' %>
+		</div>
+		<div id="signup">
+			<%= render 'users/new' %>
+		</div>
+	</div>
+<% end %>
