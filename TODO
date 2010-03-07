@@ -1,0 +1,15 @@
+User Login:
+
+	- on login/register,  update the user_bar
+	- style user_bar as auth
+	- create verification code + interface 
+
+Item posting:
+	- Autocomplete for cause
+	- Dropdown / Autocomplete
+	- Register cause (?)
+
+Overall:
+	- noscript tag at bottom
+	- bring in authentication_tokens with user_bar
+	- Beta Note
