@@ -2,7 +2,7 @@ class CausesController < ApplicationController
   # GET /causes
   # GET /causes.xml
   def index
-    @causes = Cause.all
+    @causes = Cause.all :order => 'created_at DESC'
 
     respond_to do |format|
       format.html # index.html.erb

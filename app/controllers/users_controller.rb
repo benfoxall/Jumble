@@ -6,10 +6,10 @@ class UsersController < ApplicationController
     @user = User.create(params[:user])
     if @user.save
       render :update do |page|
-        page.hide 'claim_div'
+        page.hide 'auth'
       end
     else
-      render :action => :new
+      render :action => :new, :layout => false
     end
   end
 

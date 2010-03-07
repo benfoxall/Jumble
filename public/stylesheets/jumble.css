@@ -112,6 +112,32 @@ a{
 #description{
 	font-size:.8em;
 }
-.user_bar{
+
+#user_bar{
 	font-size:.7em;
+	float:right;
+	right:0;
+	position:absolute;
+	top:0;
+	right:0;
+}
+
+#auth{
+	font-size:1.3em;
+	color:#000;
+	background-color:#eee;
+	color:#444;
+	padding:.5em;
+	text-shadow: #d7d7d7 0 0 5px;
+}
+#auth h2{
+	font-weight:normal;
+}
+#auth >* {padding:0;margin:0;}
+#auth input[type=text], #auth input[type=password]{
+	width:15em;
+}
+.dev{
+	color:#f08;
+	font-size:.8em;
 }

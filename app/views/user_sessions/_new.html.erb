@@ -1,4 +1,4 @@
-<% remote_form_for @user_session, :update => 'login' do |f| %><%= f.hidden_field :claim_code %>
+<% remote_form_for (@user_session || UserSession.new), :update => 'login' do |f| %>
 <p>
 	<%= f.label :email %><br />
 	<%= f.text_field :email %>

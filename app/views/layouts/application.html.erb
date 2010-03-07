@@ -12,11 +12,7 @@
 </head>
 <body<%= ' class="inactive"' if @active == false %>>
 
-	<% if UserSession.find %>
-	<p class="user_bar">
-		<em><%=h UserSession.find.user.name %></em> <%= link_to 'logout', logout_path %>
-	</p>	
-	<% end %>
+	<div id="user_bar"></div>
 
 	<%- flash.each do |type,message| -%>
 	<p class="flash <%=h type%>">

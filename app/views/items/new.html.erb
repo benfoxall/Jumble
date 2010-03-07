@@ -19,7 +19,11 @@
 				&pound;-
 			</span>
 			<span class="to">
+				<% if @item.cause.nil? %>
+					CHOOSER
+				<% else %>
 				<%= @item.cause.title %>
+				<% end %>
 			</span>
 		</li>
 		<li id="b">

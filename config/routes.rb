@@ -8,6 +8,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :user_sessions
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
   
+  map.connect 'userbar', :controller => 'site', :action => 'user_bar'
+  
   
   # map.login "login", :controller => "user_sessions", :action => "new"
   # map.logout "logout", :controller => "user_sessions", :action => "destroy"

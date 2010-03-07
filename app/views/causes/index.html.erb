@@ -1,29 +1,28 @@
-<h1>Listing causes</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Owner</th>
-    <th>Aasm state</th>
-  </tr>
-
+<ul>
 <% @causes.each do |cause| %>
-  <tr>
-    <td><%=h cause.title %></td>
-    <td><%=h cause.description %></td>
-    <td><%=h cause.owner_id %></td>
-    <td><%=h cause.aasm_state %></td>
-    <td><%= link_to 'Show', cause %></td>
-    <td><%= link_to 'Edit', edit_cause_path(cause) %></td>
-    <td><%= link_to 'Destroy', cause, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+	<li>
+		<%= link_to  h(cause.title), cause %>
+	</li>
 <% end %>
-</table>
+</ul>
 
-<br />
-
-<%= link_to 'New cause', new_cause_path %>
-
-
-<h2 style="color:#f08">Just so you know - I'm totally aware of the fact that this is open this is.. It's all about the concept at the moment. <small>(please don't delete everything)</small></h2>
+<style type="text/css" media="screen">
+	ul{
+		text-align:center;
+		padding:2em;
+	}
+	li{
+		display:inline;
+		list-style:none;
+		padding-right:2em;
+	}
+	li a{
+		font-size:2em;
+		color:#ccc;
+		text-decoration:none;
+	}
+	li a:hover{
+		color:#08f;
+		text-decoration:underline;
+	}
+</style>

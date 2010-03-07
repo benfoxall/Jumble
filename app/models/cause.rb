@@ -9,6 +9,8 @@ class Cause < ActiveRecord::Base
   
   has_many :items, :order => 'id DESC', :dependent => :destroy
   validates_presence_of :title
+  validates_presence_of :user, :message => 'must be logged in'
+  validates_associated :user
   belongs_to :user
   
   

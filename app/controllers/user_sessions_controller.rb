@@ -7,13 +7,11 @@ class UserSessionsController < ApplicationController
   def create
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
-      make_claim(params[:user_session][:claim_code],@user_session.user.id)
-
       render :update do |page|
-        page.hide 'claim_div'
+        page.hide 'auth'
       end
     else
-      render :action => 'new'
+      render :action => 'new', :layout => false
     end
   end
 

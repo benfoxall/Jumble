@@ -1,35 +1,7 @@
-<% unless claimed? %>
-<div id="claim_div">
-<div id="activate">
-	<h2>
-		<a href="#login"  id="login_link">Login</a> / 
-		<a href="#signup" id="signup_link">Signup</a> to make this your own
-	</h2>
-	<div id="login">
-		<% 
-		@user_session = UserSession.new 
-		@user_session.claim_code = "cause:#{@cause.id}:#{@cause.claim_code}"
-		%>
-		<%= render 'user_sessions/new' %>
-	</div>
-	<div id="signup">
-		<% 
-		@user = User.new 
-		@user.claim_code = "cause:#{@cause.id}:#{@cause.claim_code}"
-		%>
-		<%= render 'users/new' %>
-	</div>
-
-</div>
-</div>
-<% end %>
-
-<% if claimed? %>
-<h3 style="float:right;margin:0">
+<h3>
 	Like this?  
 	<%= link_to 'Sell an item for it!', new_cause_item_path(:cause_id => params[:id]) %>
 </h3>
-<% end %>
 
 <h1 id="cause-title">
 	<%=h @cause.title %>
@@ -54,48 +26,3 @@
  new Ajax.InPlaceEditor('description', '<%= url_for @cause%>/edit_inplace', {rows:3,cols:40,loadTextURL:'<%= url_for @cause%>?as_plain_text', highlightColor:'#EBF2FB'});
 </script>
 <% end %>
-
-<script type="text/javascript" charset="utf-8">
-	document.observe('dom:loaded',function(){
-		if($('activate')){
-			
-			var tog = function(from,to){
-				if(from.visible()){from.blindUp({duration:0.3});}
-				if(!to.visible()){to.blindDown({duration:0.3});}
-			}
-			
-			$('login_link').observe('click',function(){
-				tog($('signup'),$('login'))
-				$('login_link').morph({color:'#08f'},{duration:0.3});
-				$('signup_link').morph({color:'#444'},{duration:0.3});
-			})
-			$('signup_link').observe('click',function(){
-				tog($('login'),$('signup'))
-				$('signup_link').morph({color:'#08f'},{duration:0.3});
-				$('login_link').morph({color:'#444'},{duration:0.3});
-			})
-			$('signup').hide();
-			$('login').hide();
-		}
-	})
-</script>
-
-<style type="text/css" media="screen">
-	#activate{
-		font-size:1.3em;
-		color:#000;
-/*		font-style: italic;*/
-/*		border-bottom:.4em solid #f08;*/
-		background-color:#eee;
-		color:#444;
-		padding:.5em;
-		text-shadow: #d7d7d7 0 0 5px;
-	}
-	h2{
-		font-weight:normal;
-	}
-	#activate >* {padding:0;margin:0;}
-	#activate a{
-/*		color:#555;*/
-	}
-</style>
