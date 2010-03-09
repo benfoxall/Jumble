@@ -42,6 +42,9 @@ class ItemsController < ApplicationController
   # POST /items.xml
   def create
     @item = Item.new(params[:item])
+    
+    user_session = UserSession.find
+    @item.user = user_session.user if user_session
 
     respond_to do |format|
       if @item.save

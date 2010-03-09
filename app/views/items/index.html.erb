@@ -1,31 +1,25 @@
-<h1>Listing items</h1>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Price</th>
-    <th>Retained cost</th>
-    <th>Cause</th>
-    <th>Id in cause</th>
-    <th>Description</th>
-  </tr>
 
+<ul class="index">
+	<li class="new">
+		<%= link_to '+', new_item_path %>
+	</li>
 <% @items.each do |item| %>
-  <tr>
-    <td><%=h item.title %></td>
-    <td><%=h item.price %></td>
-    <td><%=h item.retained_cost %></td>
-    <td><%=h item.cause_id %></td>
-    <td><%=h item.id_in_cause %></td>
-    <td><%=h item.description %></td>
-    <td><%= link_to 'Show', item %></td>
-    <td><%= link_to 'Edit', edit_item_path(item) %></td>
-    <td><%= link_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+	<li>
+		<%= link_to  h(item.title), item %>
+	</li>
 <% end %>
-</table>
+</ul>
 
-<br />
 
-<%= link_to 'New item', new_item_path %>
-<h2 style="color:#f08">Just so you know - I'm totally aware of the fact that this is open this is.. It's all about the concept at the moment. <small>(please don't delete everything)</small></h2>
+<style type="text/css" media="screen">
+	.index .new a{
+		font-size:1.5em;
+		color:#f08;
+		display:block;
+		margin-bottom:1em;
+	}
+	.index .new a:hover:after{
+		content:' add an item';
+	}
+</style>

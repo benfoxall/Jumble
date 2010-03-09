@@ -47,24 +47,23 @@ class CausesController < ApplicationController
     @text = @cause.description
   end
   
-  def hello
-    @cause = Cause.find(params[:id])
-    
-    if params.key? @cause.login_hash
-        @cause.update_attribute :confirmed, true
-        session["cause-#{@cause.id}"] = true
-    end
-    redirect_to @cause
-  end
+  # def hello
+  #   @cause = Cause.find(params[:id])
+  #   
+  #   if params.key? @cause.login_hash
+  #       @cause.update_attribute :confirmed, true
+  #       session["cause-#{@cause.id}"] = true
+  #   end
+  #   redirect_to @cause
+  # end
 
   # POST /causes
   # POST /causes.xml
   def create
     @cause = Cause.new(params[:cause])
     
-    userses = UserSession.find
-    
-    @cause.user = userses.user if userses
+    user_session = UserSession.find
+    @cause.user = user_session.user if user_session
 
     respond_to do |format|
       if @cause.save

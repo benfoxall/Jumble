@@ -1,5 +1,4 @@
-
-<% remote_form_for (@user || User.new), :update => 'register' do |f|%><%= f.hidden_field :claim_code %>
+<% remote_form_for (@user || User.new) do |f|%>
 
 	<p>
 		<%=f.label :name %><br/>

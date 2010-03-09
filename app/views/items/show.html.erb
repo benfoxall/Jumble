@@ -1,14 +1,8 @@
-<h1 id="for">
-	for <%=link_to h(@item.cause.title), @item.cause %> 
-</h1>
-
-
 <h1 id="title">
-	<img src="http://chart.apis.google.com/chart?cht=p&amp;chd=<%= @item.google_chart_data %>&amp;chs=100" style="float:right"/>
 	<%=h @item.title %> <span class="amount">&pound;<%=h @item.price %></span> 
 </h1>
 <h2>
-	Donating <span class="amount">&pound;<%=h @item.price - @item.retained_cost - @item.charge %></span>
+	Donating <span class="amount">&pound;<%=h @item.donation %></span> to <%=link_to h(@item.cause.title), @item.cause %>
 </h2>
 
 <div>

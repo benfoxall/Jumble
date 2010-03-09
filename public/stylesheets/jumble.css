@@ -132,6 +132,7 @@ a{
 }
 #auth h2{
 	font-weight:normal;
+	text-align:right;
 }
 #auth >* {padding:0;margin:0;}
 #auth input[type=text], #auth input[type=password]{
@@ -140,4 +141,31 @@ a{
 .dev{
 	color:#f08;
 	font-size:.8em;
+}
+#home h2{
+	font-size:3em;
+	margin-bottom:0;
+	color:#08f;
+	text-transform:uppercase;
+}
+#home p{
+	margin-top:0;
+}
+ul.index{
+	text-align:center;
+	padding:2em;
+}
+ul.index li{
+	display:inline;
+	list-style:none;
+	padding-right:2em;
+}
+ul.index li a{
+	font-size:2em;
+	color:#ccc;
+	text-decoration:none;
+}
+ul.index li a:hover{
+	color:#08f;
+	text-decoration:underline;
 }

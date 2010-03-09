@@ -3,6 +3,8 @@ User Login:
 	- on login/register,  update the user_bar
 	- style user_bar as auth
 	- create verification code + interface 
+	- logout via ajax (to keep page)
+	- secure
 
 Item posting:
 	- Autocomplete for cause
@@ -13,3 +15,5 @@ Overall:
 	- noscript tag at bottom
 	- bring in authentication_tokens with user_bar
 	- Beta Note
+	- secure symbol
+	- protect cause/item -> user  from mass assignment

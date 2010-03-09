@@ -19,10 +19,3 @@
 <div id="items">
 	<%= render @cause.items %>
 </div>
-
-
-<% if owner? %>
-<script type="text/javascript">
- new Ajax.InPlaceEditor('description', '<%= url_for @cause%>/edit_inplace', {rows:3,cols:40,loadTextURL:'<%= url_for @cause%>?as_plain_text', highlightColor:'#EBF2FB'});
-</script>
-<% end %>

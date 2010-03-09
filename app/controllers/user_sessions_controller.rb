@@ -8,10 +8,13 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
       render :update do |page|
-        page.hide 'auth'
+        page.replace_html 'user_bar', :partial => 'site/user', :object => @user_session.user
       end
     else
-      render :action => 'new', :layout => false
+      render :update do |page|
+        page.replace_html 'login', :partial => 'new', :object => @user_session
+      end
+      # render :action => 'new', :layout => false
     end
   end
 

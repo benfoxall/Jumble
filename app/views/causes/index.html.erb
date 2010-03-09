@@ -1,28 +1,7 @@
-<ul>
+<ul class="index">
 <% @causes.each do |cause| %>
 	<li>
 		<%= link_to  h(cause.title), cause %>
 	</li>
 <% end %>
 </ul>
-
-<style type="text/css" media="screen">
-	ul{
-		text-align:center;
-		padding:2em;
-	}
-	li{
-		display:inline;
-		list-style:none;
-		padding-right:2em;
-	}
-	li a{
-		font-size:2em;
-		color:#ccc;
-		text-decoration:none;
-	}
-	li a:hover{
-		color:#08f;
-		text-decoration:underline;
-	}
-</style>

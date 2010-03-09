@@ -9,6 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
   
   map.connect 'userbar', :controller => 'site', :action => 'user_bar'
+  map.root :controller => 'site', :action => 'home'
   
   
   # map.login "login", :controller => "user_sessions", :action => "new"
