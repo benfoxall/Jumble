@@ -9,30 +9,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100206123736) do
+ActiveRecord::Schema.define(:version => 20100206104133) do
 
   create_table "causes", :force => true do |t|
+    t.integer  "user_id"
     t.string   "title"
     t.text     "description"
-    t.string   "aasm_state"
     t.string   "permalink"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "claim_code"
-    t.integer  "user_id"
   end
 
   create_table "items", :force => true do |t|
+    t.integer  "cause_id"
+    t.integer  "user_id"
     t.string   "title"
     t.integer  "price"
-    t.integer  "retained_cost"
-    t.integer  "cause_id"
-    t.integer  "id_in_cause"
+    t.integer  "donation"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "claim_code"
-    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|
@@ -42,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20100206123736) do
     t.string   "name"
     t.string   "persistence_token"
     t.boolean  "verified"
+    t.string   "verify_code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,11 +1,13 @@
 class CreateItems < ActiveRecord::Migration
   def self.up
     create_table :items do |t|
+      
+      t.integer :cause_id
+      t.integer :user_id
+      
       t.string :title
       t.integer :price
-      t.integer :retained_cost
-      t.integer :cause_id
-      t.integer :id_in_cause
+      t.integer :donation
       t.text :description
 
       t.timestamps
