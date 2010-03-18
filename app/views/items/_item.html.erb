@@ -2,9 +2,19 @@
 	<p class="cost">
 		<span class="amount">&pound;<%=h item.price %></span> 
 		<span class="donated">&pound;<%=h item.donation %> dontated</span>
+		<canvas width="20" height="20" id="pie-<%= item.id%>" style="margin-top:.3em"></canvas>
 	</p>
 	<h3><%=link_to h(item.title), item %></h3>
 	<div class="description">
 		<%= simple_format h(truncate(item.description, :length => 60)) %>
 	</div>
 </div>
+
+
+<% 
+p = item.donation.to_f/item.price.to_f;
+props = [p,1-p] %>
+
+<script type="text/javascript" charset="utf-8">
+	new Pie('pie-<%= item.id%>',[<%= props.join ',' %>])
+</script>

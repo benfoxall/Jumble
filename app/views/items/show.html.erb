@@ -1,9 +1,17 @@
+
+
+<canvas id="canvas" height="50" width="50"></canvas>
+
 <h1 id="title">
 	<%=h @item.title %> <span class="amount">&pound;<%=h @item.price %></span> 
+	
 </h1>
 <h2>
 	Donating <span class="amount">&pound;<%=h @item.donation %></span> to <%=link_to h(@item.cause.title), @item.cause %>
+	
 </h2>
+
+
 
 <div>
   <%=simple_format h(@item.description) %>
@@ -19,4 +27,17 @@
 	h1#title{
 		margin:0;
 	}
+	#canvas{
+		float:left;
+		margin-right:1em;
+		margin-top:.5em;
+	}
 </style>
+
+<% 
+p = @item.donation.to_f/@item.price.to_f;
+props = [p,1-p] %>
+
+<script type="text/javascript" charset="utf-8">
+	new Pie('canvas',[<%= props.join ',' %>])
+</script>
