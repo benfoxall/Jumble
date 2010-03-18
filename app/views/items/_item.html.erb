@@ -5,6 +5,6 @@
 	</p>
 	<h3><%=link_to h(item.title), item %></h3>
 	<div class="description">
-		<%= simple_format h(item.description) %>
+		<%= simple_format h(truncate(item.description, :length => 60)) %>
 	</div>
 </div>
