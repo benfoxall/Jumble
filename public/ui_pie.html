@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<title>jumble</title>
+	
+	<link href="http://jumble.local/stylesheets/jumble.css?1268005770" media="screen" rel="stylesheet" type="text/css" />
+	<script src="http://jumble.local/javascripts/prototype.js?1264173614" type="text/javascript"></script>
+	<script src="http://jumble.local/javascripts/effects.js?1264173614" type="text/javascript"></script>
+	<script src="http://jumble.local/javascripts/dragdrop.js?1264173614" type="text/javascript"></script>
+	<script src="http://jumble.local/javascripts/controls.js?1264173614" type="text/javascript"></script>
+	<!--<script src="http://jumble.local/javascripts/application.js?1267983856" type="text/javascript"></script>-->
+	<script type="text/javascript" charset="utf-8">
+		var Pie;
+	
+		Event.observe(window,'dom:loaded',function(){
+			
+			Pie = Class.create({
+				initialize:function(canvas,data){
+					this.canvas = $(canvas);
+					this.dims   = this.canvas.getDimensions();
+					this.radius = Math.min(this.dims.width,this.dims.height)/2;
+					this.update(data)
+				},
+				translate:function(){
+					// This will do the initial translation,  and save it
+					// (when I get my hands on the canvas documentation)
+				},
+				update:function(data){
+					c = this.canvas.getContext('2d');
+					
+					c.fillStyle = '#fff'
+					c.fillRect(0,0,this.dims.width,this.dims.height);
+					
+					// move to the centre,  and round a bit so that the first slice is at the bottom
+					c.translate(this.dims.width/2,this.dims.height/2);
+					tr = (Math.PI/2)-(Math.PI*data[0]);
+					c.rotate(tr);
+					
+					
+					
+					current = 0;
+					for (var i=0; i < data.length; i++) {
+						// tr += current;
+						c.beginPath();c.moveTo(0,0);
+						c.arc(0,0,this.radius,current,current+=(data[i]*Math.PI*2),false);
+						c.fillStyle = this.sliceColour(i/data.length);c.fill();
+					};
+					
+					//move back (instead of pop for now)
+					c.rotate(-tr);
+					c.translate(-this.dims.width/2,-this.dims.height/2);
+				},
+				sliceColour:function(p){
+					return 'rgb('+parseInt(p*255)+','+parseInt(136+(p*119))+',255)'
+				}
+			});
+			
+			
+			// This handles the donation input, and also draws the piechart
+			// when appropriate
+			// var Donation = Class.create({
+			// 				initialize:function(cost,donation,canvas){
+			// 					this.cost = $(cost);
+			// 					this.donation = $(donation);
+			// 					this.canvas = $(canvas);
+			// 					
+			// 					this.check();
+			// 					this.cost.observe('keyup',this.check.bindAsEventListener(this));
+			// 					this.donation.observe('keyup',this.check.bindAsEventListener(this));
+			// 				},
+			// 				service_charge:function(price){
+			// 					return Math.ceil(price/20.0);
+			// 				},
+			// 				check:function(){
+			// 					cost_v     = $F(this.cost);
+			// 					donation_v = $F(this.donation);
+			// 					//if there is a cost,  and (optional) donation
+			// 					draw = false;
+			// 					if(!cost_v.match(/^\d+$/) || !donation_v.match(/^\d*$/)){
+			// 						//TODO - check donation + service charge < price
+			// 						cost_i    = parseInt(cost_v)
+			// 						donation_i = parseInt(donation_v) || 0
+			// 						if((donation_i + this.service_charge(cost_i)) < cost_i){
+			// 							
+			// 						}
+			// 					}
+			// 				}
+			// 			});
+
+			var Donation = Class.create({
+				initialize:function(){
+					this.price = 0
+					this.donation = 0;
+				},
+				service_charge:function(){
+					return Math.ceil(this.price/20.0);
+				},
+				is_valid:function(){
+					return  this.price > this.donation + this.service_charge;
+				}
+			})
+			
+			//
+			var DonationObserver = Class.create({
+				initialize:function(donation,price_f,donation_f){
+					this.donation = donation;
+					this.price_f = $(price_f);
+					this.donation_f = $(donation_f);
+					this.price_f.observe(   'keyup',this.do_update.bindAsEventListener(this));
+					this.donation_f.observe('keyup',this.do_update.bindAsEventListener(this));
+				},
+				do_update:function(){
+					p = $F(this.price_f);
+					d = $F(this.donation_f);
+					if(p.match(/^\d+$/)){
+						this.donation.price = parseInt(p);
+					}
+					if(d.match(/^\d*$/)){
+						this.donation.donation = parseInt(d) || 0;
+					}
+				}
+			})
+			
+			// this is a hacked together version of what this should be
+			// a lot cleaner
+			var HackDonationObserver = Class.create({
+				initialize:function(cost,donation,canvas){
+					this.cost = $(cost);
+					this.donation = $(donation);
+					this.canvas = $(canvas);
+					$(cost).observe('keyup',this.update.bindAsEventListener(this))
+					$(donation).observe('keyup',this.update.bindAsEventListener(this))
+				},
+				update:function(){
+					p = parseInt($F(this.cost)) || 0
+					d = parseInt($F(this.donation)) || 0
+					s =  Math.ceil(p/20.0);
+					if(p > 5 && d > 1 && p >= (d + s)){
+						a = s/p;
+						b = (d-(s/2))/p;
+						if(b < 0){b = 0}
+						c = 1 - a - b;
+						new Pie(this.canvas,[a,b,c]);
+						this.canvas.show();
+					} else {
+						this.canvas.hide();
+					}
+				}
+				
+			})
+			
+			new HackDonationObserver('item_price','item_donation','item_canvas');
+		
+		})
+
+		
+		
+	</script>
+	<style type="text/css" media="screen">
+		#item_price{
+			width:3em;
+		}
+		#item_title{
+			width:16em;
+		}
+		#item_donation{
+			width:3em;
+		}
+		canvas{
+/*			border: 1px solid #f08;*/
+			float:right;
+		}
+	</style>
+</head>
+<body>
+	
+<form action="/items" class="new_item" id="new_item" method="post"><div style="margin:0;padding:0;display:inline"><input name="authenticity_token" type="hidden" value="pycc0L40TvNzgSKaFG0em4QM/sduBFEaF/MHtFSsnuI=" /></div>
+  
+	<p>
+		I'm selling 
+		<input id="item_title" name="item[title]" type="text" /> for &pound;
+		<input id="item_price" name="item[price]" type="text" />
+		
+			<canvas id="item_canvas" width="100" height="100"></canvas>
+	</p>
+	<p>
+		with &pound;
+		<input id="item_donation" name="item[donation]" type="text" /> going to
+		<select id="item_cause_id" name="item[cause_id]"><option value="1">Action Aid</option><option value="2">Action Aid</option><option value="3">Action Aid</option><option value="4">bad &lt;script&gt;alert...</option><option value="5">kjbasdf</option><option value="6">Oxfam GB</option></select>
+		
+	</p>
+	
+	<p>
+		<label for="item_description">Description</label><br />
+		<textarea cols="40" id="item_description" name="item[description]" rows="3"></textarea>
+	</p>
+	<p>
+		<input id="item_submit" name="commit" type="submit" value="Submit" />
+	</p>
+
+</form>
+
+</body>
+</html>
