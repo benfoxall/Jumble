@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :items
+  map.resources :items, :member => {:buy => :get}
 
   map.resources :causes, :has_many => [:items], :member => {:edit_inplace => :post, :hello => :get}
   
@@ -11,6 +11,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'userbar', :controller => 'site', :action => 'user_bar'
   map.root :controller => 'site', :action => 'home'
   
+  map.connect 'sandbox', :controller => 'site', :action => 'sandbox'
   
   # map.login "login", :controller => "user_sessions", :action => "new"
   # map.logout "logout", :controller => "user_sessions", :action => "destroy"
