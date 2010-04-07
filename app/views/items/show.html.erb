@@ -4,15 +4,11 @@
 
 <h1 id="title">
 	<%=h @item.title %> <span class="amount">&pound;<%=h @item.price %></span> 
-	
 </h1>
 <h2>
 	Donating <span class="amount">&pound;<%=h @item.donation %></span> to <%=link_to h(@item.cause.title), @item.cause %>
-	
 </h2>
-
-
-
+<h3><%= link_to 'Buy this item', :action => 'buy' %></h3>
 <div>
   <%=simple_format h(@item.description) %>
 </div>
