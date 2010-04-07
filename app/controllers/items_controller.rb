@@ -20,6 +20,15 @@ class ItemsController < ApplicationController
       format.xml  { render :xml => @item }
     end
   end
+  
+  def buy
+    @item = Item.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @item }
+    end
+  end
 
   # GET /items/new
   # GET /items/new.xml
