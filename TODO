@@ -1,15 +1,17 @@
 User Login:
-
 	- on login/register,  update the user_bar
 	- style user_bar as auth
 	- create verification code + interface 
 	- logout via ajax (to keep page)
 	- secure
+	- double click hides login box
 
 Item posting:
 	- Autocomplete for cause
 	- Dropdown / Autocomplete
-	- Register cause (?)
+
+Item Buying:
+	- 
 
 Overall:
 	- noscript tag at bottom
@@ -17,3 +19,4 @@ Overall:
 	- Beta Note
 	- secure symbol
 	- protect cause/item -> user  from mass assignment
+	- set up tests properly
