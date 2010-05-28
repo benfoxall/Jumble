@@ -1,24 +1,41 @@
-<h1>Sell Something</h1>
+
 <% form_for(@item) do |f| %>
   <%= f.error_messages %>
+
+	<h1>Sell</h1>
 	<p>
-		<%= f.label :title %><br />
+		<%= f.label :title %>
 		<%= f.text_field :title %>
 	</p>
 
 	<p>
-		<%= f.label :price %> (&pound;)<br/> 
-		<%= f.text_field :price %>
+		<%= f.label :price %> 
+		&pound;<%= f.text_field :price, :size => 4%>
+	</p>
+	
+	
+	<p>
+		<%= f.label :postage, "Postage &amp; Packing" %> 
+		&pound;<%= f.text_field :postage, :size => 4%>
 	</p>
 
 	<p>
-		<%= f.label :donation %> (&pound;)<br/> 
-		<%= f.text_field :donation %>
+		<%= f.label :description%>
+		<%= f.text_area :description, :rows => 3, :cols => 30 %>
+	</p>
+	
+	
+	<h1>Give</h1>
+	
+	<p>
+		<%= f.label :donation %>
+		<%= f.text_field :donation, :size => 4 %>
 	</p>
 
 	<p>
-		<%= f.label :cause %><br/> 
+		<%= f.label :cause %> 
 		<% 
+		# todo : Actually - there is a better way,  select_tag
 			# prime candidate for memcached
 			causes = Cause.all.map do |c|
 				content = h(truncate(c.title,:length => 20))
@@ -32,11 +49,14 @@
 
 
 	<p>
-		<%= f.label :description %><br />
-		<%= f.text_area :description, :rows => 3 %>
-	</p>
-	<p>
 		<%= f.submit 'Submit' %>
 	</p>
 
 <% end %>
+
+<style type="text/css" media="screen">
+	label{
+		display:block;
+		margin-bottom:-.25em;
+	}
+</style>

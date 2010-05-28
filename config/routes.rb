@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :items, :member => {:buy => :get}
+  map.resources :items, :member => {:buy => :post}
 
   map.resources :causes, :has_many => [:items], :member => {:edit_inplace => :post, :hello => :get}
   

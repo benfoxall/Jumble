@@ -1,0 +1,13 @@
+<h1>
+	<%=h @user.name %>
+</h1>
+<p class="dev">
+	Todo:<br/>
+	- Feedback on this user<br/>
+	- Message this user
+</p>
+
+<h3>Items by this user</h3>
+<div>
+	<%= render @user.items %>
+</div>

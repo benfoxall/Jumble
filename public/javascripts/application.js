@@ -79,7 +79,15 @@ document.observe('dom:loaded',function(){
 			})	
 		
 			if(series.length > 0){
-				canvas = new Element('canvas',{width:element.getWidth(),height:element.getHeight()});
+
+				canvas = new Element('canvas');
+				$w('width height style class id').each(function(a){
+					if(element.hasAttribute(a)){
+						console.log(a,element.readAttribute(a))
+						canvas.writeAttribute(a,element.readAttribute(a));	
+					}
+				})
+				
 				element.replace(canvas)
 				// element.insert({after:canvas})
 				new Pie(canvas,series)

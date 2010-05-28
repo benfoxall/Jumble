@@ -69,20 +69,20 @@ class ItemsController < ApplicationController
 
   # PUT /items/1
   # PUT /items/1.xml
-  def update
-    @item = Item.find(params[:id])
-
-    respond_to do |format|
-      if @item.update_attributes(params[:item])
-        flash[:notice] = 'Item was successfully updated.'
-        format.html { redirect_to(@item) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @item.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   @item = Item.find(params[:id])
+  # 
+  #   respond_to do |format|
+  #     if @item.update_attributes(params[:item])
+  #       flash[:notice] = 'Item was successfully updated.'
+  #       format.html { redirect_to(@item) }
+  #       format.xml  { head :ok }
+  #     else
+  #       format.html { render :action => "edit" }
+  #       format.xml  { render :xml => @item.errors, :status => :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /items/1
   # DELETE /items/1.xml

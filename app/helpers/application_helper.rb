@@ -5,8 +5,9 @@ module ApplicationHelper
   # which will be drawn using canvas if possible
   def chart series, *options
     opts = options.first || {}
-    width = opts[:width] || 100
-    height = opts[:height] || 100
+    
+    opts[:width] ||= 100
+    opts[:height] ||= 100
     
     # do some scaling
     total = 0
@@ -16,11 +17,10 @@ module ApplicationHelper
     #rotate to 'down'
     chp = (Math::PI/2)-(Math::PI*series.first)
     
-    content_tag :img, '', 
-            :class => 'chart', 
-            :src => "http://chart.apis.google.com/chart?cht=p&chd=t:#{series.join ','}&chs=#{width}x#{height}&chp=#{chp}",
-            :width => width,
-            :height => height
+    content_tag :img, '', {
+              :class => 'chart', 
+              :src => "http://chart.apis.google.com/chart?cht=p&chd=t:#{series.join ','}&chs=#{opts[:width]}x#{opts[:height]}&chp=#{chp}"
+            }.merge(opts)
   end
   
 end

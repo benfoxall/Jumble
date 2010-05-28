@@ -1,5 +1,13 @@
+<p class="flash">We've reserved this item for <strong>10 minutes</strong>.</p>
+
 <h1 id="title">
 	<%=h @item.title %> <span class="amount">&pound;<%=h @item.price %></span> 
 </h1>
 
-<p><big>This item will cost</big></p>
+<div>
+	<%=simple_format(h(@item.description)) %>
+</div>
+
+<p>
+	You are buying this item from <%= link_to @item.user.name, @item.user %>
+</p>

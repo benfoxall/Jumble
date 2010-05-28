@@ -1,18 +1,39 @@
 
+<% 
+p = @item.donation.to_f/@item.price.to_f;
+props = [p,1-p] %>
 
-<canvas id="canvas" height="50" width="50"></canvas>
+<%= chart [p,1-p], :width => 50, :height => 50 %>
+
 
 <h1 id="title">
-	<%=h @item.title %> <span class="amount">&pound;<%=h @item.price %></span> 
+	<%=h @item.title %> <span class="amount">&pound;<%=h @item.price %></span><span class="selling_by"> selling by <%=link_to h(@item.user.name), @item.user %></span>
 </h1>
 <h2>
 	Donating <span class="amount">&pound;<%=h @item.donation %></span> to <%=link_to h(@item.cause.title), @item.cause %>
 </h2>
-<h3><%= link_to 'Buy this item', :action => 'buy' %></h3>
 <div>
   <%=simple_format h(@item.description) %>
 </div>
 
+<h3><a href="#buy" id="buy-link">Buy this item</a></h3>
+
+<div id="buy">
+	<p class="total">
+		&pound;<%= @item.price + @item.service_charge + @item.postage %>
+	</p>
+	<p class="payment">
+		<a href="#paypal" class="paypal">Paypal</a>
+		<span class="pay-details">this item will be reserved for 10 minutes while you pay</span>
+	</p>
+	<ul class="costs">
+		<li>&pound;<%= @item.price %> Item Cost <small>(&pound;<%=h @item.donation %> goes to <%=link_to h(@item.cause.title), @item.cause %>)</small></li>
+		<li>&pound;<%= @item.postage %> Postage &amp; Packing</li>
+		<li>&pound;<%= @item.service_charge %> Service Charge</li>
+	</ul>
+</div>
+
+<%#= link_to 'Click here to buy this &raquo;', buy_item_path, :method => 'post' %></h3>
 
 <style type="text/css" media="screen">
 	h2{
@@ -23,17 +44,80 @@
 	h1#title{
 		margin:0;
 	}
-	#canvas{
+	.chart{
 		float:left;
 		margin-right:1em;
 		margin-top:.5em;
 	}
+	.selling_by{
+		font-size:.4em;
+		font-weight:normal;
+		color:#ccc;
+	}
+	
+	
+	
+	
+	
+	
+	.total{
+		font-size:3.5em;
+		font-weight:bold;
+		margin:0;
+		float:left;
+	}
+	.payment{
+		float:left;
+		margin-left:1em;
+		padding-top:.5em;
+	}
+	.pay-details{
+		font-size:.6em;
+		color:#999;
+		display:block;
+	}
+	.paypal{
+		margin-top:1em;
+		background-color:#FFB439;
+		-webkit-border-radius:5px;
+		padding:.1em 1em;
+		font-weight:bold;
+		color:#000;
+		text-decoration:none;
+		font-style: italic;
+	}
+	
+	ul.costs{
+		clear:both;
+		list-style:none;
+		padding:0;
+		font-size:1.3em;
+		color:#888;
+	}
+	ul.costs li{
+		margin-bottom:.5em;
+	}
+	ul.costs li small{
+		font-size:.6em;
+	}
+	#buy{
+		width:500px;
+	}
 </style>
 
-<% 
-p = @item.donation.to_f/@item.price.to_f;
-props = [p,1-p] %>
-
 <script type="text/javascript" charset="utf-8">
-	new Pie('canvas',[<%= props.join ',' %>])
+	var once = true;
+	document.observe('dom:loaded',function(){
+		if(once){
+			once = false;
+			//dom:loaded called twice
+
+			$('buy').hide();
+
+			$('buy-link').observe('click',function(e){
+				new Effect.toggle('buy','slide');
+			})
+			
+		}
+	})
 </script>
