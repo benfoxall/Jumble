@@ -1,4 +1,29 @@
 
+<div id="buy">
+	<div>
+		<p class="total">
+			&pound;<%= @item.price + @item.service_charge + @item.postage %>
+		</p>
+		<p class="payment">
+			<a href="http://paypal.local" class="paypal">Paypal</a>
+			<span class="pay-details">this item will be reserved for 10 minutes while you pay</span>
+		</p>
+		<ul class="costs">
+			<li>&pound;<%= @item.price %> Item Cost <small>(&pound;<%=h @item.donation %> goes to <%=link_to h(@item.cause.title), @item.cause %>)</small></li>
+			<li>&pound;<%= @item.postage %> Postage &amp; Packing</li>
+			<li>&pound;<%= @item.service_charge %> Service Charge</li>
+		</ul>
+	</div>
+</div>
+
+
+
+
+<p class="right">
+	<a href="#buy" id="buy-link">Buy this item</a> <br/>
+</p>
+
+
 <% 
 p = @item.donation.to_f/@item.price.to_f;
 props = [p,1-p] %>
@@ -9,34 +34,42 @@ props = [p,1-p] %>
 <h1 id="title">
 	<%=h @item.title %> <span class="amount">&pound;<%=h @item.price %></span><span class="selling_by"> selling by <%=link_to h(@item.user.name), @item.user %></span>
 </h1>
-<h2>
+<h2 id="donation">
 	Donating <span class="amount">&pound;<%=h @item.donation %></span> to <%=link_to h(@item.cause.title), @item.cause %>
 </h2>
 <div>
   <%=simple_format h(@item.description) %>
 </div>
 
-<h3><a href="#buy" id="buy-link">Buy this item</a></h3>
+<% conversation = Conversation.find_or_create_by_path item_path %>
 
-<div id="buy">
-	<p class="total">
-		&pound;<%= @item.price + @item.service_charge + @item.postage %>
+<div class="messages">
+	<p style="margin:0">
+		<a href="#messages" onClick="$('message-content').blindDown();$('message-link').hide()" id="message-link"><%=pluralize conversation.messages.size, 'Message'%> </a>
 	</p>
-	<p class="payment">
-		<a href="#paypal" class="paypal">Paypal</a>
-		<span class="pay-details">this item will be reserved for 10 minutes while you pay</span>
-	</p>
-	<ul class="costs">
-		<li>&pound;<%= @item.price %> Item Cost <small>(&pound;<%=h @item.donation %> goes to <%=link_to h(@item.cause.title), @item.cause %>)</small></li>
-		<li>&pound;<%= @item.postage %> Postage &amp; Packing</li>
-		<li>&pound;<%= @item.service_charge %> Service Charge</li>
-	</ul>
+	<div id="message-content" style="display:none">
+		<%= render conversation %>
+		<%# will be ajax %>
+	</div>
 </div>
 
-<%#= link_to 'Click here to buy this &raquo;', buy_item_path, :method => 'post' %></h3>
+
+<div style="clear:left">
+	
+</div>
+
+
+
+
+
 
 <style type="text/css" media="screen">
-	h2{
+	.note{
+		color:#999;
+		font-size:.6em;
+	}
+
+	h2#donation{
 		font-size:1.1em;
 		color:#ccc;
 		margin-top:0;
@@ -101,7 +134,13 @@ props = [p,1-p] %>
 		font-size:.6em;
 	}
 	#buy{
-		width:500px;
+		margin:-1em;
+		margin-bottom:1em;
+	}
+	#buy > div{
+		background-color:#f5f5f5;
+		border-bottom:1px solid #ccc;
+		padding:2em;
 	}
 </style>
 
@@ -111,12 +150,15 @@ props = [p,1-p] %>
 		if(once){
 			once = false;
 			//dom:loaded called twice
-
 			$('buy').hide();
-
 			$('buy-link').observe('click',function(e){
 				new Effect.toggle('buy','slide');
 			})
+			
+			// $('message').hide();
+			// $('message-link').observe('click',function(e){
+			// 	new Effect.toggle('message','slide');
+			// })
 			
 		}
 	})

@@ -1,7 +1,6 @@
-<h3>
-	Like this?  
-	<%= link_to 'Sell an item for it!', new_cause_item_path(:cause_id => params[:id]) %>
-</h3>
+<p class="right">
+	<%= link_to "Sell something", sell_path(:cause_id => params[:id]) %>
+</p>
 
 <h1 id="cause-title">
 	<%=h @cause.title %>

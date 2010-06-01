@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  path: MyString
+  public: false
+  user_id: 1
+
+two:
+  path: MyString
+  public: false
+  user_id: 1

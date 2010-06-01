@@ -1,4 +1,4 @@
-<% if UserSession.find %>
+<% if UserSession.find %>	
 	<%= render :partial => 'user', :object => UserSession.find.user %>
 <% else %>
 	<div id="auth">

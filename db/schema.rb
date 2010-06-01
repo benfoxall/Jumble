@@ -9,13 +9,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100527130509) do
+ActiveRecord::Schema.define(:version => 20100601102445) do
 
   create_table "causes", :force => true do |t|
     t.integer  "user_id"
     t.string   "title"
     t.text     "description"
     t.string   "permalink"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "conversations", :force => true do |t|
+    t.string   "path"
+    t.boolean  "public"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,6 +40,15 @@ ActiveRecord::Schema.define(:version => 20100527130509) do
     t.integer  "postage",     :default => 0
   end
 
+  create_table "messages", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "conversation_id"
+    t.boolean  "public",          :default => true
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "password_hash"
@@ -42,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20100527130509) do
     t.string   "verify_code"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "beta",              :default => false
   end
 
 end

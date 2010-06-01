@@ -1,25 +1,17 @@
+<p class="right">
+	<%= link_to "Add your item", new_item_path %>
+</p>
+<h3>Items for sale</h3>
 
 
 <ul class="index">
-	<li class="new">
-		<%= link_to '+', new_item_path %>
-	</li>
 <% @items.each do |item| %>
 	<li>
 		<%= link_to  h(item.title), item %>
+		<span class="for">
+			for <%= link_to item.cause.title, item.cause %>
+		</span>
 	</li>
 <% end %>
 </ul>
 
-
-<style type="text/css" media="screen">
-	.index .new a{
-		font-size:1.5em;
-		color:#f08;
-		display:block;
-		margin-bottom:1em;
-	}
-	.index .new a:hover:after{
-		content:' add an item';
-	}
-</style>

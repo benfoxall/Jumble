@@ -42,9 +42,9 @@ Pie = Class.create({
 	}
 });
 
+var has_run = false;
 document.observe('dom:loaded',function(){
-	
-	
+	if(has_run){return;}else{has_run = true;}
 	//make flashes able to be removed
 	$$('.flash').each(function(flash){
 		close = new Element('span',{'class':'close'}).update('&times;');
@@ -83,7 +83,6 @@ document.observe('dom:loaded',function(){
 				canvas = new Element('canvas');
 				$w('width height style class id').each(function(a){
 					if(element.hasAttribute(a)){
-						console.log(a,element.readAttribute(a))
 						canvas.writeAttribute(a,element.readAttribute(a));	
 					}
 				})

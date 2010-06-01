@@ -7,5 +7,13 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password
-
+  
+  protected
+  
+  def in_beta
+    unless UserSession.find && UserSession.find.user.beta
+      render 'site/in_beta'
+    end
+  end
+  
 end

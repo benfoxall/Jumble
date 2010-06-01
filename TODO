@@ -11,7 +11,9 @@ Item posting:
 	- Dropdown / Autocomplete
 
 Item Buying:
-	- 
+	- Block for payment
+	- Allow items to be linked as having been bought by a user.
+	- Integrate with paypal
 
 Overall:
 	- noscript tag at bottom

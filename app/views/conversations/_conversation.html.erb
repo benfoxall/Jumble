@@ -1,0 +1,22 @@
+<p style="padding:.5em;font-size:.7em;text-align:center">
+	<a href="#messages-add" onclick="new Effect.toggle('new_message_display','appear')">Post a message</a>
+</p>
+
+<div id="new_message_display" style="display:none;text-align:center">
+<% form_for conversation.messages.new do |f| %>
+	<%= f.hidden_field :conversation_id %>
+	<div>
+		<p>
+			<%=f.text_area :content, :rows => 3, :cols => 20 %><br />
+			<span class="note">Your email address will be shared with the seller</span><br/>
+			<%=f.submit :send %>
+		</p>
+	</div>
+<% end %>
+</div>
+
+<% if conversation.messages.size == 0 %>
+<p class="message"><small>No messages</small></p>
+<% end %>
+
+<%= render conversation.messages %>

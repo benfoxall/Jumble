@@ -1,0 +1,8 @@
+<div class="message">
+	<p style="margin:.2em">
+		<%= h(message.content)%>
+	</p>
+	<p class="sender">
+		<%= link_to h(message.user.short_name), message.user %> <span class="ago"><%= time_ago_in_words message.created_at %> ago</span>
+	</p>
+</div>

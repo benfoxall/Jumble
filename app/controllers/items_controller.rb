@@ -1,8 +1,11 @@
 class ItemsController < ApplicationController
+  
+  before_filter :in_beta, :except => [:show,:index]
+  
   # GET /items
   # GET /items.xml
   def index
-    @items = Item.all
+    @items = Item.all :order => 'created_at DESC'
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +17,6 @@ class ItemsController < ApplicationController
   # GET /items/1.xml
   def show
     @item = Item.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @item }

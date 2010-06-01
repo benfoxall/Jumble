@@ -1,4 +1,7 @@
 class CausesController < ApplicationController
+  
+  before_filter :in_beta, :except => [:show,:index]
+  
   # GET /causes
   # GET /causes.xml
   def index
@@ -41,22 +44,7 @@ class CausesController < ApplicationController
   def edit
     @cause = Cause.find(params[:id])
   end
-  def edit_inplace
-    @cause = Cause.find(params[:id])
-    @cause.update_attribute(:description, params[:value])
-    @text = @cause.description
-  end
   
-  # def hello
-  #   @cause = Cause.find(params[:id])
-  #   
-  #   if params.key? @cause.login_hash
-  #       @cause.update_attribute :confirmed, true
-  #       session["cause-#{@cause.id}"] = true
-  #   end
-  #   redirect_to @cause
-  # end
-
   # POST /causes
   # POST /causes.xml
   def create
