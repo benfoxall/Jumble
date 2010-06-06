@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   has_many :items
   validates_presence_of :name
   
+  attr_protected :beta, :admin
+  
+  
   def short_name
     s = name.split
     l = s.length - 1

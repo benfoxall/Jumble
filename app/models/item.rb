@@ -1,12 +1,13 @@
 class Item < ActiveRecord::Base
+  attr_protected :user_id
+  
   belongs_to :cause
   belongs_to :user
   has_many :payments #might be failed payments
   
   validates_presence_of :cause_id
   validates_associated :cause
-  
-  # todo - don't allow update via multi_update
+
   validates_presence_of :user, :message => 'must be logged in'
   validates_associated :user
   

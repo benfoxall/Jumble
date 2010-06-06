@@ -1,4 +1,6 @@
 class Message < ActiveRecord::Base
+  attr_protected :user_id
+  
   before_validation_on_create :assign_to_current_user
   belongs_to :user
   belongs_to :conversation

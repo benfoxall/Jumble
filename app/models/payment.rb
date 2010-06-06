@@ -1,4 +1,5 @@
 class Payment < ActiveRecord::Base
+  attr_protected :user_id
   
   before_validation_on_create :assign_current_user
   

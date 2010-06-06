@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100603144441) do
+ActiveRecord::Schema.define(:version => 20100606183846) do
 
   create_table "causes", :force => true do |t|
     t.integer  "user_id"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20100603144441) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "beta",              :default => false
+    t.boolean  "admin",             :default => false
   end
 
 end
