@@ -56,13 +56,15 @@ document.observe('dom:loaded',function(){
 	
 	
 	if($('user_bar')){
-		new Ajax.Updater('user_bar','/userbar',{onComplete:function(){
-			$('user_bar').hide().appear();
-			if($('login_link')){
-				$('signup').hide();
-				$('login').hide();
-			}
-		}})
+		new Ajax.Updater('user_bar','/userbar');
+		
+		// new Ajax.Updater('user_bar','/userbar',{onComplete:function(){
+		// 	$('user_bar').hide().appear();
+		// 	if($('login_link')){
+		// 		$('signup').hide();
+		// 		$('login').hide();
+		// 	}
+		// }})
 	}
 	
 	
@@ -96,23 +98,18 @@ document.observe('dom:loaded',function(){
 });
 
 
-var tog = function(from,to){
-	if(from.visible()){from.blindUp();}
-	if(!to.visible()){to.blindDown();}
-}
 document.observe('click',function(e){	
-	if(e.element().identify() == 'login_link'){
+	if(e.element().hasClassName('return')){
 		e.stop();
-		tog($('signup'),$('login'))
-		$('signup_link').morph({color:'#08f'});
-		$('login_link').morph({color:'#444'});
+		go_href = e.element().readAttribute('href');
+		at_href = document.location.href;
+		
+		//the seperator between target and this
+		sep = go_href.indexOf('?') == -1 ? '?' : '&';
+		
+		document.location = go_href + sep + 'return=' + at_href;
 	}
-	if(e.element().identify() == 'signup_link'){
-		e.stop();
-		tog($('login'),$('signup'))
-		$('login_link').morph({color:'#08f'});
-		$('signup_link').morph({color:'#444'});
-	}
+	
 	// return false;
 });
 

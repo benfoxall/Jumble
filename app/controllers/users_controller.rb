@@ -1,19 +1,16 @@
 class UsersController < ApplicationController
+  before_filter :store_return, :only => :new
   def new
+    @user = User.new  
   end
   
   def create
     @user = User.create(params[:user])
     if @user.save
-      render :update do |page|
-        # page.hide 'auth'
-        page.replace_html 'user_bar', :partial => 'site/user', :object => @user
-      end
+      flash[:notice] = "Welcome Aboard!"
+      redirect_return
     else
-      render :update do |page|
-        page.replace_html 'signup', :partial => 'new', :object => @user
-      end
-      # render :action => :new, :layout => false
+      render :new
     end
   end
 

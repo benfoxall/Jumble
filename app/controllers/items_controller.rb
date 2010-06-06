@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   
-  before_filter :in_beta, :except => [:show,:index]
+  before_filter :in_beta, :except => [:show,:index,:buy]
   
   # GET /items
   # GET /items.xml

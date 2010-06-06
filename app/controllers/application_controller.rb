@@ -16,4 +16,13 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def store_return
+    cookies[:return] ||= params[:return]
+  end
+  
+  def redirect_return(fallback = '/')
+    redirect_to cookies[:return] || fallback
+    cookies.delete :return
+  end
+  
 end

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   acts_as_authentic
   has_many :items
+  validates_presence_of :name
   
   def short_name
     s = name.split

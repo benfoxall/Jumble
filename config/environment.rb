@@ -42,3 +42,9 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 end
+
+
+
+# this is the email address for the paypal account
+# that will recieve all the commision from sales
+SITE_PP_EMAIL = 'sg_adm_1275573034_biz@gmail.com'

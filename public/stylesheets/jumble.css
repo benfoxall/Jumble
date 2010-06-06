@@ -105,30 +105,14 @@ a{
 	font-size:.8em;
 }
 
-#user_bar{
-	font-size:.7em;
-	position:absolute;
-	top:0;
-	right:0;
-	background-color:#71AEFA;
-}
 
-#auth{
-	font-size:1.3em;
-	color:#000;
-	background-color:#eee;
-	color:#444;
-	padding:.5em;
-	text-shadow: #d7d7d7 0 0 5px;
-}
-#auth h2{
-	font-weight:normal;
-	text-align:right;
-}
-#auth >* {padding:0;margin:0;}
-#auth input[type=text], #auth input[type=password]{
-	width:15em;
-}
+
+
+
+
+
+
+
 .dev{
 	color:#f08;
 	font-size:.8em;
@@ -288,3 +272,84 @@ dl#stats dt{
 .message .sender .ago{color:#ccc;}
 /** ------- needs redone **/
 
+
+a.alternative{
+	color:#ddd;
+	text-decoration:none;
+}
+strong.note{
+	font-size:.7em;
+	color:#c10000;
+	font-weight:normal;
+	width:30em;
+	display:block;
+}
+
+/** USER BAR **/
+#user_bar{
+	position:absolute;
+	right:0;
+	top:0;
+	color:#333;
+	background-color:#61A4FA;
+	padding:.5em;
+	margin:0;
+}
+#user_bar a{
+	color:#000;
+}
+/*
+#user_bar{
+	font-size:.7em;
+	position:absolute;
+	top:0;
+	right:0;
+	background-color:#71AEFA;
+}
+
+#auth{
+	font-size:1.3em;
+	color:#000;
+	background-color:#eee;
+	color:#444;
+	padding:.5em;
+	text-shadow: #d7d7d7 0 0 5px;
+}
+#auth h2{
+	font-weight:normal;
+	text-align:right;
+}
+#auth >* {padding:0;margin:0;}
+#auth input[type=text], #auth input[type=password]{
+	width:15em;
+}*/
+.buy_item a{
+	border:none;
+	font-size:1.2em;
+	float:right;
+	background-color:#08f;
+	color:#fff;
+	padding:.5em;
+	text-decoration:none;
+}
+input.continue{
+	border:none;
+	font-size:1.2em;
+	float:left;
+	background-color:#08f;
+	color:#fff;
+	padding:.5em;
+	text-decoration:none;	
+}
+
+
+/** Item#buy **/
+#breakdown th{text-align:right;font-weight:normal;padding-right:20px;color:#ccc;}
+#breakdown tr.total{font-size:3em;}
+#breakdown tr.total td{color:#08f;font-size:1.2em;}
+#breakdown .donation{color:#ccc;font-size:.7em;}
+.reserve{clear:both;padding-top:1em;font-size:.8em;width:14em;color:#000;}
+.reserve strong{color:#08f;white-space:nowrap;}
+
+#very-important-note{position:absolute;right:1em;width:20em;margin:1em;border:1px dashed #08f;background-color:#fff;padding:1em;opacity:0.8;-moz-opacity:0.8;filter:alpha(opacity=80);}
+#very-important-note h1{margin:0;color:#f00;}

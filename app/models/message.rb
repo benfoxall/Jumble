@@ -1,5 +1,5 @@
 class Message < ActiveRecord::Base
-  before_validation :assign_to_current_user
+  before_validation_on_create :assign_to_current_user
   belongs_to :user
   belongs_to :conversation
   

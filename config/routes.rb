@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :items #, :member => {:buy => :post}
+  map.resources :items, :member => {:buy => :get}
   map.sell "/sell/:cause_id", :controller => :items, :action => :new
 
   map.resources :causes #, :has_many => [:items] #, :member => {:edit_inplace => :post, :hello => :get}
@@ -8,13 +8,19 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :messages
   
+  map.resources :payments
+  
   map.resources :user_sessions
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
+  map.login 'login', :controller => 'user_sessions', :action => 'new'
+  map.register 'register', :controller => 'users', :action => 'new'
   
   map.connect 'userbar', :controller => 'site', :action => 'user_bar'
   map.root :controller => 'site', :action => 'home'
   
   map.connect 'sandbox', :controller => 'site', :action => 'sandbox'
+  
+  map.connect 'p', :controller => 'site', :action => 'payment'
   
   # map.login "login", :controller => "user_sessions", :action => "new"
   # map.logout "logout", :controller => "user_sessions", :action => "destroy"

@@ -1,0 +1,20 @@
+development:
+    environment: "sandbox"
+    username: "benfox_1247928830_biz_api1.gmail.com"
+    password: "1247928840"
+    signature: "ABf4M5YondarPu6xLJ3CVyliypcFAm6UozWoq2mzKhJG4bRgRf1pBHeG"
+    application_id: "APP-80W284485P519543T"
+
+test:
+    environment: "sandbox"
+    username: "benfox_1247928830_biz_api1.gmail.com"
+    password: "1247928840"
+    signature: "ABf4M5YondarPu6xLJ3CVyliypcFAm6UozWoq2mzKhJG4bRgRf1pBHeG"
+    application_id: "APP-80W284485P519543T"
+
+production:
+    environment: "sandbox"
+    username: "benfox_1247928830_biz_api1.gmail.com"
+    password: "1247928840"
+    signature: "ABf4M5YondarPu6xLJ3CVyliypcFAm6UozWoq2mzKhJG4bRgRf1pBHeG"
+    application_id: "APP-80W284485P519543T"

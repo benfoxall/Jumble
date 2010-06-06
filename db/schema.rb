@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100601102445) do
+ActiveRecord::Schema.define(:version => 20100603144441) do
 
   create_table "causes", :force => true do |t|
     t.integer  "user_id"
@@ -45,6 +45,24 @@ ActiveRecord::Schema.define(:version => 20100601102445) do
     t.integer  "conversation_id"
     t.boolean  "public",          :default => true
     t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "item_id"
+    t.string   "pay_key"
+    t.string   "aasm_state"
+    t.string   "email"
+    t.string   "phone"
+    t.text     "note"
+    t.string   "name"
+    t.string   "address"
+    t.string   "address2"
+    t.string   "town"
+    t.string   "county"
+    t.string   "postcode"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
