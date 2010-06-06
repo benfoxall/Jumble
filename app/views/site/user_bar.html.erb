@@ -1,16 +1,6 @@
-<% if UserSession.find %>	
-	<%= render :partial => 'user', :object => UserSession.find.user %>
+<% if UserSession.find %>
+	<em><%=h UserSession.find.user.name %></em> 
+	<%= link_to 'logout', logout_path, :class => 'return' %>
 <% else %>
-	<div id="auth">
-		<h2>
-			<a href="#login"  id="login_link">Login</a> / 
-			<a href="#signup" id="signup_link">Signup</a>
-		</h2>
-		<div id="login">
-			<%= render 'user_sessions/new' %>
-		</div>
-		<div id="signup">
-			<%= render 'users/new' %>
-		</div>
-	</div>
+	<%= link_to 'login', login_path, :class => 'return' %>
 <% end %>

@@ -1,26 +1,5 @@
-
-<div id="buy">
-	<div>
-		<p class="total">
-			&pound;<%= @item.price + @item.service_charge + @item.postage %>
-		</p>
-		<p class="payment">
-			<a href="#paypal-NOTIMPLEMENTED" class="paypal">Paypal</a>
-			<span class="pay-details">this item will be reserved for 10 minutes while you pay</span>
-		</p>
-		<ul class="costs">
-			<li>&pound;<%= @item.price %> Item Cost <small>(&pound;<%=h @item.donation %> goes to <%=link_to h(@item.cause.title), @item.cause %>)</small></li>
-			<li>&pound;<%= @item.postage %> Postage &amp; Packing</li>
-			<li>&pound;<%= @item.service_charge %> Service Charge</li>
-		</ul>
-	</div>
-</div>
-
-
-
-
-<p class="right">
-	<a href="#buy" id="buy-link">Buy this item</a> <br/>
+<p class="buy_item">
+	<%= link_to 'Buy this item', :action => :buy %>
 </p>
 
 
@@ -41,8 +20,10 @@ props = [p,1-p] %>
   <%=simple_format h(@item.description) %>
 </div>
 
-<% conversation = Conversation.find_or_create_by_path item_path %>
 
+
+
+<% conversation = Conversation.find_or_create_by_path item_path %>
 <div class="messages">
 	<p style="margin:0">
 		<a href="#messages" onClick="$('message-content').blindDown();$('message-link').hide()" id="message-link"><%=pluralize conversation.messages.size, 'Message'%> </a>
@@ -52,10 +33,7 @@ props = [p,1-p] %>
 		<%# will be ajax %>
 	</div>
 </div>
-
-
 <div style="clear:left">
-	
 </div>
 
 
@@ -145,21 +123,21 @@ props = [p,1-p] %>
 </style>
 
 <script type="text/javascript" charset="utf-8">
-	var once = true;
-	document.observe('dom:loaded',function(){
-		if(once){
-			once = false;
-			//dom:loaded called twice
-			$('buy').hide();
-			$('buy-link').observe('click',function(e){
-				new Effect.toggle('buy','slide');
-			})
-			
-			// $('message').hide();
-			// $('message-link').observe('click',function(e){
-			// 	new Effect.toggle('message','slide');
-			// })
-			
-		}
-	})
+	// var once = true;
+	// document.observe('dom:loaded',function(){
+	// 	if(once){
+	// 		once = false;
+	// 		//dom:loaded called twice
+	// 		// $('buy').hide();
+	// 		// $('buy-link').observe('click',function(e){
+	// 		// 	new Effect.toggle('buy','slide');
+	// 		// })
+	// 		
+	// 		// $('message').hide();
+	// 		// $('message-link').observe('click',function(e){
+	// 		// 	new Effect.toggle('message','slide');
+	// 		// })
+	// 		
+	// 	}
+	// })
 </script>

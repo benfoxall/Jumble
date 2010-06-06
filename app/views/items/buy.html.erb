@@ -1,13 +1,34 @@
-<p class="flash">We've reserved this item for <strong>10 minutes</strong>.</p>
-
-<h1 id="title">
-	<%=h @item.title %> <span class="amount">&pound;<%=h @item.price %></span> 
-</h1>
-
-<div>
-	<%=simple_format(h(@item.description)) %>
+<div id="very-important-note">
+	<h1>Very Important</h1>
+	<p>
+		<big>
+		We strongly suggest that you are in <strong>direct contact</strong> with the seller <strong>prior</strong> to purchasing.</big>
+	</p>
+	<p>
+		We'll be introducing measures to assure you of the seller identity.  But for now - it's your responsibility make sure that you trust the seller of this item.
+	</p>
 </div>
 
-<p>
-	You are buying this item from <%= link_to @item.user.name, @item.user %>
-</p>
+<table id="breakdown">
+	<tr><th>Item</th><td>&pound;<%= @item.price %> <span class="donation">&pound;<%=h @item.donation %> goes to <%=link_to h(@item.cause.title), @item.cause %></span></td></tr>
+	<tr><th>Delivery</th><td>&pound;<%= @item.postage %></td></tr>
+	<tr><th>Service Charge</th><td>&pound;<%= @item.service_charge %></td></tr>
+	<tr class="total"><th>Total</th><td>&pound;<%= @item.price + @item.service_charge + @item.postage %> </td></tr>
+</table>
+
+
+
+<% form_for @item.payments.new do |f| %>
+	<%= f.hidden_field :item_id %>
+
+	<p style="margin:0;margin-top:2em;font-size:.8em">
+		<%= f.check_box :terms %><%= f.label :terms, 'I accept the'%> <%= link_to 'terms &amp; conditions', '/terms/buyer.htm' %>
+	</p>
+	<p style="margin:0">
+	<%= f.submit "Continue &raquo;", :class => 'continue' %>
+	</p>
+<% end %>
+
+
+<p class="reserve">This item will be reserved for <strong>10 minutes</strong>, while you fill out your details</p>
+

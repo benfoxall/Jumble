@@ -1,1 +1,15 @@
-<%= render 'user_sessions/new'%>
+<h1>Login <%= link_to 'Register', register_url, :class => 'alternative' %></h1>
+<% form_for @user_session do |f| %>
+<p>
+	<%= f.label :email %><br />
+	<%= f.text_field :email %>
+</p>
+<p>
+	<%= f.label :password %><br/>
+	<%= f.password_field :password %>
+</p>
+<p>
+	<%= f.submit 'Login' %>
+</p>
+<%= f.error_messages :header_message => '' %>
+<% end %>

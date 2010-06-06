@@ -1,1 +1,28 @@
-<%= render 'users/new'%>
+
+<h1><%= link_to 'Login', login_url, :class => 'alternative' %> Register</h1>
+<% form_for @user do |f|%>
+
+	<p>
+		<%=f.label :name %><br/>
+		<%=f.text_field :name %>
+	</p>
+	<p>
+		<%=f.label :email %><br/>
+		<%=f.text_field :email %><br/>
+		<strong class="note">If you are to recieve money from this site,  this email must correlate with your paypal account</strong>
+	</p>
+	<p>
+		<%=f.label :password %><br/>
+		<%=f.password_field :password, :value => '' %>
+	</p>
+	<p>
+		<%=f.label :password_confirmation %><br/>
+		<%=f.password_field :password_confirmation, :value => '' %>
+	</p>
+	<p>
+		<%= f.submit 'Register' %>
+	</p>
+	
+	<%= f.error_messages :header_message => '' %>
+	
+<% end %>

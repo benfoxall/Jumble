@@ -1,0 +1,98 @@
+<% form_for @payment do |f| %>
+
+<div id="delivery">
+	
+	<div id="contact-panel">
+		<h3>Contact Information</h3>
+		<p>
+			<%= f.label :email %>
+			<%= f.text_field :email, :value => @payment.email || @payment.user.email %>
+			
+			<%= f.label :phone %>
+			<%= f.text_field :phone %>
+			
+			<%= f.label :note %>
+			<%= f.text_area :note, :rows => 8, :cols => 20 %>
+		</p>
+	</div>
+
+	<div id="address-panel">
+		<h3>Delivery Address</h3>
+		<p>
+			
+			<%= f.label :name %>
+			<%= f.text_field :name, :value => @payment.name || @payment.user.name %>
+			
+			<%= f.label :address %>
+			<%= f.text_field :address %>
+			<%= f.text_field :address2 %>
+			
+			
+			<%= f.label :town, "Town / City" %>
+			<%= f.text_field :town %>
+			
+			
+			<%= f.label :county %>
+			<%= f.text_field :county %>
+			
+			
+			<%= f.label :postcode, 'Postal Code' %>
+			<%= f.text_field :postcode %>
+<!-- # Name
+# Address
+# ...
+# Town/City
+# County
+# Postal Code		 -->	
+			
+			<!-- 		<p>
+					<label for="name">Name</label><input type="text" name="name" value="<%=h@payment.user.name%>" id="name" class="supplied">
+					<label for="address">Address</label><input type="text" name="address" value="" id="address"> 
+					<input type="text" name="address2" value="" id="address2">
+					<label for="town">Town/City</label><input type="text" name="town" value="" id="town">
+					<label for="county">County</label><input type="text" name="county" value="" id="county">
+					
+					<label for="postcode">Postal Code</label><input type="text" name="postcode" value="" id="postcode">
+					</p>
+					 -->
+		</p>
+		<p>
+			<%= f.submit 'Save &amp; Continue', :class => 'continue'%>
+		</p>
+	</div>
+
+</div>
+
+<div style="clear:both">
+</div>
+
+<% end %>
+
+<style type="text/css" media="screen">
+	label,input,textarea{
+		display:block;
+		width:14em;
+	}
+	label{
+		margin-top:1em;
+	}
+	
+	#delivery #contact-panel{
+		float:left;
+		width:50%;
+	}
+	#delivery #address-panel{
+		float:right;
+		width:50%;
+	}
+	
+	#postcode{
+		width:6em;
+	}
+	#town{
+		width:6em;
+	}
+	input.supplied{
+		color:#999;
+	}
+</style>
