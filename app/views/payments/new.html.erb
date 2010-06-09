@@ -1,0 +1,121 @@
+<% form_for @payment, :url => item_payments_path, :method => :post do |f| %>
+<div class="box">
+	<div class="top">
+		<%= f.error_messages %>
+	</div>
+	
+
+	<div class="left sm">
+		<h3>Contact Information</h3>
+		<p>
+			<%= f.label :email %>
+			<%= f.text_field :email, :value => @payment.email || @payment.user.email %>
+
+			<%= f.label :phone %>
+			<%= f.text_field :phone %>
+
+			<%= f.label :note %>
+			<%= f.text_area :note, :rows => 8, :cols => 20 %>
+		</p>
+	</div>
+
+	<div class="right sm">
+		<h3>Delivery Address</h3>
+		<p>
+
+			<%= f.label :name %>
+			<%= f.text_field :name, :value => @payment.name || @payment.user.name %>
+
+			<%= f.label :address %>
+			<%= f.text_field :address %>
+			<%= f.text_field :address2 %>
+
+
+			<%= f.label :town, "Town / City" %>
+			<%= f.text_field :town, :size => 20 %>
+
+
+			<%= f.label :county %>
+			<%= f.text_field :county, :size => 12 %>
+
+
+			<%= f.label :postcode, 'Postal Code' %>
+			<%= f.text_field :postcode, :size => 8 %>
+
+		</p>
+	</div>
+	
+	<div class="bottom">
+		<p>
+				<%= f.label :terms, 'Accept our terms' %> 
+				<%= f.check_box :terms %> 
+				<%= link_to '(link)', '/terms/buyer.htm' %>
+				and 
+				<%= f.submit 'Save', :class => 'awesome'%>
+		</p>
+	</div>
+</div>
+<% end %>
+
+
+
+
+<style type="text/css" media="screen">
+
+.box .left{
+	float:left;
+	width:50%;
+}
+.box .top, .box .bottom{
+	clear:both;
+	border: 1px solid #fff;
+}
+.box .bottom * {
+	display:inline;
+}
+.box .bottom{
+	padding:2em;
+	text-align:center;
+}
+
+.sm input, .sm label{
+	font-size:.8em;
+}
+.sm label{
+/*	position:absolute;*/
+}
+.sm 
+
+
+
+	label,input,textarea{
+		display:block;
+	}
+	label{
+		margin-top:1em;
+	}
+	
+	#delivery #contact-panel{
+		float:left;
+		width:50%;
+	}
+	#delivery #address-panel{
+		float:right;
+		width:50%;
+	}
+	#delivery #save-panel{
+		clear:both;
+		text-align:center;
+		padding:1.5em;
+	}
+	
+	#postcode{
+		width:6em;
+	}
+	#town{
+		width:6em;
+	}
+	input.supplied{
+		color:#999;
+	}
+</style>

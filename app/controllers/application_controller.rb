@@ -10,16 +10,31 @@ class ApplicationController < ActionController::Base
   
   protected
   
-  def in_beta
-    unless UserSession.find && UserSession.find.user.beta
-      render 'site/in_beta'
-    end
+  
+  # a quick refactored method to see if someone is logged in
+  def logged_in(as_attr = nil)
+    return false unless UserSession.find #not logged in
+    return true  unless as_attr # is nil (no-one in particular)
+    return UserSession.find.user[as_attr] == true 
   end
   
+  # before filters to use the above method
+  def in_beta
+    render 'site/in_beta' unless logged_in(:beta)
+  end
+  
+  def is_admin
+    redirect_to '/' unless logged_in(:admin)
+  end
+  
+  
+  # if a 'return' param was sent,  store it so that it can be
+  # returned to later (ie. once a user has logged in)
   def store_return
     cookies[:return] ||= params[:return]
   end
   
+  # if a 'return' cookie was stored,  then redirect to it.
   def redirect_return(fallback = '/')
     redirect_to cookies[:return] || fallback
     cookies.delete :return

@@ -19,6 +19,15 @@ class Item < ActiveRecord::Base
   validates_numericality_of :postage, :only_integer => true  # todo - less than price
   validates_numericality_of :donation, :only_integer => true, :greater_than => 0  # todo - less than price
   
+  def bought?
+    # paym
+  end
+  def buying?
+    
+  end
+
+  
+  #deprecated
   def service_charge
     ((price + postage)/20.0).ceil
   end
@@ -40,21 +49,30 @@ class Item < ActiveRecord::Base
     }
   end
   
-  def pay_request_data
-    {
-      "returnUrl" => "http://jumble.local/payments/completed_payment_request",
-      "requestEnvelope" => {"errorLanguage" => "en_US"},
-      "currencyCode"=>"GBP",
-      "receiverList"=>{"receiver"=>
-           [
-              {"email" => SITE_PP_EMAIL,        "amount"=> service_charge() , "primary"=>"true"},
-              {"email" => cause.user.email,     "amount"=> donation , "primary"=>"false"},
-              {"email" => user.email,           "amount"=> seller, "primary"=>"false"}
-           ]},
-      "cancelUrl"=>"http://testserver.com/payments/canceled_payment_request",
-      "actionType"=>"PAY",
-      "ipnNotificationUrl"=>"http://jumble.local/payments/ipn_notification"
-    }
+  #returns the users, and how much they get payed
+  def payees
+    [
+      {:email => user.email,       :amount => pay_shares[:seller]},
+      {:email => cause.user.email, :amount => pay_shares[:cause]}
+    ]
   end
+  
+  # see payment
+  # def pay_request_data
+  #   {
+  #     "returnUrl" => "http://jumble.local/payments/completed_payment_request",
+  #     "requestEnvelope" => {"errorLanguage" => "en_US"},
+  #     "currencyCode"=>"GBP",
+  #     "receiverList"=>{"receiver"=>
+  #          [
+  #             {"email" => SITE_PP_EMAIL,        "amount"=> service_charge() , "primary"=>"true"},
+  #             {"email" => cause.user.email,     "amount"=> donation , "primary"=>"false"},
+  #             {"email" => user.email,           "amount"=> seller, "primary"=>"false"}
+  #          ]},
+  #     "cancelUrl"=>"http://testserver.com/payments/canceled_payment_request",
+  #     "actionType"=>"PAY",
+  #     "ipnNotificationUrl"=>"http://jumble.local/payments/ipn_notification"
+  #   }
+  # end
   
 end

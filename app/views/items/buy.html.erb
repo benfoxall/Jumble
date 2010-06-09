@@ -16,19 +16,20 @@
 	<tr class="total"><th>Total</th><td>&pound;<%= @item.price + @item.service_charge + @item.postage %> </td></tr>
 </table>
 
+<%= link_to 'Continue &raquo;', new_item_payment_path(:item_id => params[:id]), :class => 'awesome', :style => 'margin-left:5em;margin:2em' %>
 
 
-<% form_for @item.payments.new do |f| %>
-	<%= f.hidden_field :item_id %>
+<%# form_for @item.payments.new do |f| % >
+	<%= f.hidden_field :item_id % >
 
 	<p style="margin:0;margin-top:2em;font-size:.8em">
-		<%= f.check_box :terms %><%= f.label :terms, 'I accept the'%> <%= link_to 'terms &amp; conditions', '/terms/buyer.htm' %>
+		<%= f.check_box :terms % ><%= f.label :terms, 'I accept the'% > <%= link_to 'terms &amp; conditions', '/terms/buyer.htm' % >
 	</p>
 	<p style="margin:0">
-	<%= f.submit "Continue &raquo;", :class => 'continue' %>
+	<%= f.submit "Continue &raquo;", :class => 'continue' % >
 	</p>
-<% end %>
+<% end #%>
 
 
-<p class="reserve">This item will be reserved for <strong>10 minutes</strong>, while you fill out your details</p>
+<!-- <p class="reserve">This item will be reserved for <strong>10 minutes</strong>, while you fill out your details</p> -->
 

@@ -1,5 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :items, :member => {:buy => :get}
+  map.resources :items, :member => {:buy => :get} do |item|
+    item.resources :payments, :member => {:cancel => :post}
+  end
+  
+  # map.resources :payments, :member => {:cancel => :post}
+  
   map.sell "/sell/:cause_id", :controller => :items, :action => :new
 
   map.resources :causes #, :has_many => [:items] #, :member => {:edit_inplace => :post, :hello => :get}
@@ -8,7 +13,6 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :messages
   
-  map.resources :payments
   
   map.resources :user_sessions
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'

@@ -21,7 +21,7 @@ div.hr hr{
 	font-style: italic;
 	color:#333;
 	font-size:.7em;
-	width:30em;
+/*	width:30em;*/
 }
 .fieldWithErrors{
 	display:inline;
@@ -66,6 +66,9 @@ a{
 }
 .flash .close:hover{
 	color:#f08;
+}
+.flash.permanent{
+	color:#08f;
 }
 .amount{
 	font-weight:bold; /* we all like amounts! */
@@ -232,11 +235,6 @@ div#sidebar > div{
 	background-color:#fff;
 }
 
-.right{
-	float:right;
-	margin:0;
-	font-size:.6em;
-}
 dl#stats{
 	float:right;
 	border: 1px solid #ccc;
@@ -296,7 +294,7 @@ strong.note{
 	margin:0;
 }
 #user_bar a{
-	color:#000;
+	color:#B2D5FC;
 }
 /*
 #user_bar{
@@ -339,7 +337,8 @@ input.continue{
 	background-color:#08f;
 	color:#fff;
 	padding:.5em;
-	text-decoration:none;	
+	text-decoration:none;
+	cursor:pointer;	
 }
 
 
@@ -351,5 +350,45 @@ input.continue{
 .reserve{clear:both;padding-top:1em;font-size:.8em;width:14em;color:#000;}
 .reserve strong{color:#08f;white-space:nowrap;}
 
-#very-important-note{position:absolute;right:1em;width:20em;margin:1em;border:1px dashed #08f;background-color:#fff;padding:1em;opacity:0.8;-moz-opacity:0.8;filter:alpha(opacity=80);}
+#very-important-note{position:absolute;right:1em;width:20em;margin:1em;border-left:1px solid #08f;background-color:#fff;padding:1em;opacity:0.8;-moz-opacity:0.8;filter:alpha(opacity=80);}
 #very-important-note h1{margin:0;color:#f00;}
+
+
+body{
+	position:relative;
+}
+/** overlay **/
+#overlay{
+	position:absolute;
+	margin:-1em;
+	height:10em;
+	z-index:100;
+	width:100%;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/80-white.png', sizingMethod='scale');
+}
+div[id=overlay]{
+	background-image:url(/images/80-white.png);
+}
+#overlay{ /* the text stuff */
+	padding-top:3em;
+	text-align:center;
+	
+}
+#overlay h2{
+	color:#f09;
+	font-weight:normal;
+	text-transform:uppercase;
+	margin:0;
+	font-size:.8em;
+}
+
+
+
+
+
+/** Awesome buttons - http://www.zurb.com/article/266/super-awesome-buttons-with-css3-and-rgba **/
+.awesome{background:#08f url(/images/overlay.png) repeat-x;display:inline-block;padding:5px 10px 6px;color:#fff;text-decoration:none;font-weight:bold;line-height:1;-moz-border-radius:5px;-webkit-border-radius:5px;-moz-box-shadow:0 1px 3px rgba(0,0,0,0.5);-webkit-box-shadow:0 1px 3px rgba(0,0,0,0.5);text-shadow:0 -1px 1px rgba(0,0,0,0.25);border-bottom:1px solid rgba(0,0,0,0.25);position:relative;cursor:pointer;font-size:20px;padding:8px 14px 9px;}
+
+.awesome.beta{background-color:#bbb;}
+.awesome.right{float:right;}
+

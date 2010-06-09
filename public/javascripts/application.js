@@ -47,6 +47,9 @@ document.observe('dom:loaded',function(){
 	if(has_run){return;}else{has_run = true;}
 	//make flashes able to be removed
 	$$('.flash').each(function(flash){
+		
+		if(flash.hasClassName('permanent')){return}
+		
 		close = new Element('span',{'class':'close'}).update('&times;');
 		close.observe('click',function(e){
 			Event.element(e).up('.flash').fade();
@@ -57,14 +60,6 @@ document.observe('dom:loaded',function(){
 	
 	if($('user_bar')){
 		new Ajax.Updater('user_bar','/userbar');
-		
-		// new Ajax.Updater('user_bar','/userbar',{onComplete:function(){
-		// 	$('user_bar').hide().appear();
-		// 	if($('login_link')){
-		// 		$('signup').hide();
-		// 		$('login').hide();
-		// 	}
-		// }})
 	}
 	
 	

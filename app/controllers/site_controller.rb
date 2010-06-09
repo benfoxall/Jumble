@@ -17,8 +17,9 @@ class SiteController < ApplicationController
       "currencyCode"=>"USD",
       "receiverList"=>{"receiver"=>
            [
-             {"email"=>"sg_adm_1275573034_biz@gmail.com", "amount"=>"11.00", "primary"=>"true"},
-             {"email"=>"testpp_1261697850_per@nextsprocket.com", "amount"=>"10.00", "primary"=>"false"}
+             {:email=>"sg_adm_1275573034_biz@gmail.com", "amount"=>"21.00", "primary"=>"true"},
+              {"email"=>"testpp_1261697850_per@nextsprocket.com", "amount"=>"10.00", "primary"=>"false"},
+               {"email"=>"testpp_1261697850_per@nextsprocket.com", "amount"=>"10.00", "primary"=>"false"}
            ]},
       "cancelUrl"=>"http://testserver.com/payments/canceled_payment_request",
       "actionType"=>"PAY",

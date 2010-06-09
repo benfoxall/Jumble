@@ -1,1 +1,6 @@
-<%= debug @payment %>
+<h1>Right,  it's all good our side - now just pay using the link below,  and we'll be in business</h1>
+
+<%= debug @payment.pp %>
+<hr />
+
+<%= debug @payment.pp.approve_paypal_payment_url %>

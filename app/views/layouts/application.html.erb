@@ -5,16 +5,15 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	
-	<title>Swap&amp;Give</title>
+	<title>Cobini - Buying, Selling &amp; Giving</title>
 	
 <%= stylesheet_link_tag 'jumble' %>
 <%= javascript_include_tag :defaults %>
 	
 </head>
 <body>
-	
 	<div id="header">
-		<h1><a href="/">Swap<span>&amp;</span>Give</a></h1>
+		<h1><a href="http://cobini.org/">Cobini<span>.</span>org</a></h1>
 		<h2>Buying, Selling and Giving</h2>
 	</div>
 	
@@ -25,8 +24,14 @@
 	<%- flash.each do |type,message| -%>
 	<p class="flash <%=h type%>">
 		<span><%=h message %></span>
-	</p>
+	</p>	
 	<%- end -%>
+	<%- unless @notice.blank? %>
+	<p class="flash permanent">
+		<span><%=h @notice %></span>
+	</p>
+	<%- end %>
+
 	
 	<%= yield %>
 </body>

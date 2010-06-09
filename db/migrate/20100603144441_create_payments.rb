@@ -4,7 +4,7 @@ class CreatePayments < ActiveRecord::Migration
       t.integer :user_id
       t.integer :item_id
       t.string :pay_key
-      t.string :aasm_state
+      t.string :aasm_state, :default => 'editing'
       
       t.string :email
       t.string :phone

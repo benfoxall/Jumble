@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(:version => 20100606183846) do
     t.integer  "user_id"
     t.integer  "item_id"
     t.string   "pay_key"
-    t.string   "aasm_state"
+    t.string   "aasm_state", :default => "new"
     t.string   "email"
     t.string   "phone"
     t.text     "note"
